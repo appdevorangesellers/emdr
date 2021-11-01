@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Videograph Template">
+    <meta name="keywords" content="Videograph, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EMDR Meeting App - Home</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/stylez.css" type="text/css">
+
+</head>
+
+<style>
+  @charset "utf-8";
+/* CSS Document */
+
+
+body{
+    background-color:#f0f3f6;
+  overflow-x: hidden;
+
+}
+h1,h2,h3,h4,h5,h6,div,input,p,a{
+
+    margin:0px;
+}
+
+h3{
+    font-size:22px;
+}
+.container-fluid,.container {
+    margin:auto;
+  padding:0px 15px;
+  max-width:1200px;
+}
+label{
+  font-weight:500;
+}
+.form-group{
+  margin-bottom:5px;
+}
+
+
+input,textarea,select,button{
+    margin: 5px 0px ;
+    font-size:13px !important;
+    border-radius:0px;
+}
+input[type=text],input[type=password],textarea,input[type=email],select,textarea{
+    width: 100%;
+    border:1px solid #DADADA;
+    padding: 5px 10px;
+    height:45px;
+}
+input[type=submit],input[type=button],input[type=reset],button{
+    border:none;
+    font-size: 11px;
+  border-radius:3px;
+  height:45px;
+  color:#FFF;
+}
+
+.btn:hover,.btn:focus{
+    cursor:pointer;
+    color:#FFF;
+}
+input[type=radio]{
+    margin:0px;
+    padding:0px;
+    height:auto;
+}
+.form-control{
+    box-shadow:none !important;
+  border-radius:0px;
+}
+.form-control:focus{
+    border:1px solid #CCC;
+}
+.btn:focus{
+  box-shadow:none !important;
+}
+
+textarea{
+    width: 100%;
+}
+input[type=reset]{
+    margin-left: 10px;
+}
+textarea{
+  min-height:100px;
+}
+a{
+    color: inherit;
+}
+a:hover,a:focus{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.fixed{
+    position: fixed;
+}
+
+.pricing-table-container{
+  padding:50px 0px;
+}
+.description{
+  padding:15px 0px;
+}
+.description a{
+  padding:10px;
+  font-size:13px;
+  display:block;
+  font-weight:bold;
+  border-bottom:1px solid #DDD;
+}
+.description a.active{
+  background-color:#FFF;
+  padding-left:25px;
+}
+@charset "utf-8";
+/* DEMO 01 */
+.pricing-table-3{
+  background-color:#FFF;
+  margin:15px auto;
+  box-shadow:0px 0px 25px rgba(0,0,0,0.1);
+  max-width:300px;
+  border-radius:0px 10px 0px 10px;
+  overflow:hidden;
+  position:relative;
+  min-height:250px;
+  transition:all ease-in-out 0.25s;
+}
+.pricing-table-3:hover{
+  transform:scale(1.1,1.1);
+  cursor:pointer;
+}
+
+.pricing-table-3.basic .price{
+  background-color:#28b6f6;
+  color:#FFF;
+}
+.pricing-table-3.premium .price{
+  background-color:#ff9f00;
+  color:#FFF;
+}
+.pricing-table-3.business .price{
+  background-color:#c3185c;
+  color:#FFF;
+}
+
+.pricing-table-3 .pricing-table-header{
+  background-color:#212121;
+  color:#FFF;
+  padding:20px 0px 0px 20px;
+  position:absolute;
+  z-index:5;
+}
+.pricing-table-3 .pricing-table-header p{
+  font-size:12px;
+  opacity:0.7;
+}
+.pricing-table-3 .pricing-table-header::before{
+  content:"";
+  position:absolute;
+  left:-50px;
+  right:-180px;
+  height:125px;
+  top:-50px;
+  background-color:#212121;
+  z-index:-1;
+  transform:rotate(-20deg)
+}
+
+.pricing-table-3 .price{
+  position:absolute;
+  top:0px;
+  text-align:right;
+  padding:110px 20px 0px 0px;
+  right:0px;
+  left:0px;
+  font-size:20px;
+  z-index:4;
+}
+.pricing-table-3 .price::before{
+  content:"";
+  position:absolute;
+  left:0px;
+  right:0px;
+  height:100px;
+  bottom:-25px;
+  background-color:inherit;
+  transform:skewY(10deg);
+  z-index:-1;
+  box-shadow:0px 5px 0px 5px rgba(0,0,0,0.05);
+}
+
+
+.pricing-table-3 .pricing-body{
+  padding:20px;
+  padding-top:200px;
+}
+.pricing-table-3 .pricing-table-ul li{
+  color:rgba(0,0,0,0.7);
+  font-size:13px;
+  padding:10px;
+  border-bottom:1px solid rgba(0,0,0,0.1);
+}
+.pricing-table-3 .pricing-table-ul .fa{
+  margin-right:10px;
+}
+.pricing-table-3.basic .pricing-table-ul .fa{
+  color:#28b6f6;
+}
+.pricing-table-3.premium .pricing-table-ul .fa{
+  color:#ff9f00;
+}
+.pricing-table-3.business .pricing-table-ul .fa{
+  color:#c3185c;
+}
+.pricing-table-3 .view-more{
+  margin:10px 20px;
+  display:block;
+  text-align:center;
+  background-color:#212121;
+  padding:10px 0px;
+  color:#FFF;
+}
+
+.breadcrumb__links:hover{
+  color: white;
+}
+
+a:hover{
+  color: white !important;
+}
+input{
+  color: white;
+}
+select {
+    height: 50px;
+    width: 100%;
+    border: 1px solid rgba(225, 225, 225, 0.5);
+    background: transparent;
+    font-size: 16px;
+    color: #adadad;
+    padding-left: 20px;
+    font-weight: 300;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    -webkit-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
+
+option{
+  color: black;
+}
+</style>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="/home"><img src="/images/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header__nav__option">
+                        <nav class="header__nav__menu mobile-menu">
+                            <ul>
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/shop">Shop</a></li>
+                                <li><a href="/vremdr">VR App Demo</a></li>
+                                <li><a href="/users/log_out">Logout</a></li>
+
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option spad set-bg" data-setbg="/images/hero/breadcrumb-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>EMDR Meeting App - Home</h2>
+                        <div class="breadcrumb__links">
+                            <a id="hovers" href="/home">Home</a>
+                            <span>Subscription</span>
+
+                        </div>
+                        <br />
+                        <h3 style="color: white;">
+                          Now a one-off <span>50%</span> discount for unlimited EMDR sessions from <strong>$9,99</strong> per month!
+                        </h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- About Section Begin -->
+    <section class="services spad">
+
+<div class="row">
+    <div class="col-md-4 col-sm-6">
+        <div class="pricing-table-3 basic">
+            <div class="pricing-table-header">
+                <h4 style="color: white;"><strong>BASIC</strong></h4>
+
+            </div>
+            <div class="price"><strong>$9,99</strong> / MONTH</div>
+            <div class="pricing-body">
+                <ul class="pricing-table-ul">
+                    <li><i class="fa fa-eye"></i> 20 Sessions </li>
+                    <li><i class="fa fa-camera"></i> Single VR App Package </li>
+                    <li style="text-decoration: line-through;" class="not-avail"><i class="fa fa-clock-o"></i> 24X7 Support</li>
+                    <li style="text-decoration: line-through;" class="not-avail"><i class="fa fa-envelope"></i> Email Support</li>
+                </ul><a style="background-color: #100028 !important;" href="/payments/confirmtos/silver" class="view-more">View More</a></div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">
+        <div class="pricing-table-3 premium">
+            <div class="pricing-table-header">
+                <h4 style="color: white;"><strong>PREMIUM</strong></h4>
+
+            </div>
+            <div class="price"><strong>$14,99</strong> / MONTH</div>
+            <div class="pricing-body">
+                <ul class="pricing-table-ul">
+                    <li><i class="fa fa-eye"></i> Unlimited Therapy Sessions</li>
+                    <li><i class="fa fa-camera"></i> VR Sessions </li>
+                    <li><i class="fa fa-envelope"></i> Email Support</li>
+                    <li style="text-decoration: line-through;" class="not-avail"><i class="fa fa-clock-o"></i> 24X7 Support</li>
+
+                </ul><a style="background-color: #100028 !important;" href="/payments/confirmtos/gold" class="view-more">View More</a></div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="pricing-table-3 business">
+            <div class="pricing-table-header">
+                <h4 style="color: white;"><strong>SUITE</strong></h4>
+
+            </div>
+            <div class="price"><strong>$19,99</strong> / MONTH</div>
+            <div class="pricing-body">
+                <ul class="pricing-table-ul">
+                    <li><i class="fa fa-eye"></i> Unlimited Therapy Sessions </li>
+                    <li><i class="fa fa-camera"></i> VR Sessions </li>
+                    <li><i class="fa fa-clock-o"></i> 24X7 Support</li>
+                    <li><i class="fa fa-envelope"></i> Email Support</li>
+                </ul><a style="background-color: #100028 !important;" href="/payments/confirmtos/platinum" class="view-more">View More</a></div>
+        </div>
+    </div>
+</div>
+
+    </section>
+
+    <section class="team spad set-bg" data-setbg="/images/hero/team-bg.jpg">
+      <div style="display: block; margin-left: auto; margin-right: auto;" class="col-lg-6 col-md-6">
+                <div class="contact__form">
+                    <h3 style="text-align: center;">If you would like to get invoice then fill out the form to receive your invoice!</h3>
+
+                    <form action="/subscription" method="post">
+                        <input type="text" name="emailpaymentID" placeholder="Invoice ID / PaymentID">
+                        <select name="subscriptionpackage">
+                          <option hidden value="">Select one</option>
+                          <option value="1-Month Subscription, (€15)">1-Month Subscription</option>
+                          <option value="6-Months Subscription, (€80)">6-Months Subscription</option>
+                          <option value="1-Year Subscription, (€150)">1-Year Subscription</option>
+                          <option value="Life Time Subscription, (€295)">Lifetime Subscription</option>
+                        </select>
+                        <input type="email" name="emailpayment" placeholder="Confirm your email">
+                        <h6 style="color: white; font-size: 10px;">*Note: We won't send our official invoice signature if your invoice number is incorrect.</h5>
+                        <br />
+                        <button style="background-color:#100028 !important;" type="submit" class="site-btn">Request</button>
+                    </form>
+                </div>
+            </div>
+    </section>
+
+    <footer class="footer">
+
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer__copyright__text">Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            All rights reserved | emdrmeeting@2021 by <a href="https://apps.emdrmeeting.com" target="_blank">apps.emdrmeeting.com</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/mains.js"></script>
+
+</body>
+
+</html>

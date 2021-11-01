@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+
+<html lang="en" class="min-h-full">
+
+<head>
+  <style>
+    :root {
+      --litepicker-container-months-color-bg: #fff;
+      --litepicker-container-months-box-shadow-color: #ddd;
+      --litepicker-footer-color-bg: #fafafa;
+      --litepicker-footer-box-shadow-color: #ddd;
+      --litepicker-tooltip-color-bg: #fff;
+      --litepicker-month-header-color: #333;
+      --litepicker-button-prev-month-color: #9e9e9e;
+      --litepicker-button-next-month-color: #9e9e9e;
+      --litepicker-button-prev-month-color-hover: #2196f3;
+      --litepicker-button-next-month-color-hover: #2196f3;
+      --litepicker-month-width: calc(var(--litepicker-day-width) * 7);
+      --litepicker-month-weekday-color: #9e9e9e;
+      --litepicker-month-week-number-color: #9e9e9e;
+      --litepicker-day-width: 38px;
+      --litepicker-day-color: #333;
+      --litepicker-day-color-hover: #2196f3;
+      --litepicker-is-today-color: #f44336;
+      --litepicker-is-in-range-color: #bbdefb;
+      --litepicker-is-locked-color: #9e9e9e;
+      --litepicker-is-start-color: #fff;
+      --litepicker-is-start-color-bg: #2196f3;
+      --litepicker-is-end-color: #fff;
+      --litepicker-is-end-color-bg: #2196f3;
+      --litepicker-button-cancel-color: #fff;
+      --litepicker-button-cancel-color-bg: #9e9e9e;
+      --litepicker-button-apply-color: #fff;
+      --litepicker-button-apply-color-bg: #2196f3;
+      --litepicker-button-reset-color: #909090;
+      --litepicker-button-reset-color-hover: #2196f3;
+      --litepicker-highlighted-day-color: #333;
+      --litepicker-highlighted-day-color-bg: #ffeb3b
+    }
+
+
+    /* ! tailwindcss v2.0.3 | MIT License | https://tailwindcss.com */
+
+    /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+    :root {
+      -moz-tab-size: 4;
+      -o-tab-size: 4;
+      tab-size: 4
+    }
+
+    html {
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji
+    }
+
+    hr {
+      height: 0;
+      color: inherit
+    }
+
+    abbr[title] {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    [type=button],
+    [type=reset],
+    [type=submit],
+    button {
+      -webkit-appearance: button
+    }
+
+    legend {
+      padding: 0
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    button {
+      background-color: transparent;
+      background-image: none
+    }
+
+    button:focus {
+      outline: 1px dotted;
+      outline: 5px auto -webkit-focus-ring-color
+    }
+
+    fieldset,
+    ol,
+    ul {
+      margin: 0;
+      padding: 0
+    }
+
+    ol,
+    ul {
+      list-style: none
+    }
+
+    html {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+      line-height: 1.5
+    }
+
+    body {
+      font-family: inherit;
+      line-height: inherit
+    }
+
+    *,
+    :after,
+    :before {
+      box-sizing: border-box;
+      border: 0 solid #e5e7eb
+    }
+
+    hr {
+      border-top-width: 1px
+    }
+
+    img {
+      border-style: solid
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::-moz-placeholder,
+    textarea::-moz-placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    input:-ms-input-placeholder,
+    textarea:-ms-input-placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    table {
+      border-collapse: collapse
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      padding: 0;
+      line-height: inherit;
+      color: inherit
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    .container {
+      width: 100%
+    }
+
+    @media (min-width:640px) {
+      .container {
+        max-width: 640px
+      }
+    }
+
+    @media (min-width:768px) {
+      .container {
+        max-width: 768px
+      }
+    }
+
+    @media (min-width:1024px) {
+      .container {
+        max-width: 1024px
+      }
+    }
+
+    @media (min-width:1280px) {
+      .container {
+        max-width: 1280px
+      }
+    }
+
+    @media (min-width:1536px) {
+      .container {
+        max-width: 1536px
+      }
+    }
+
+    .content-box {
+      background-color: white;
+      border-radius: 2.50rem;
+      padding: 1.25rem;
+      --tw-shadow: 3px 4px 5px 4px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 0 transparent, 0 0 transparent, var(--tw-shadow);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow)
+    }
+
+    h1 {
+      margin-bottom: 1.25rem
+    }
+
+    .btn {
+      background-color: rgba(15,50,94,var(--tw-bg-opacity));
+      border-radius: 9999px;
+      display: inline-block;
+      padding: .5rem .75rem;
+      text-align: center;
+      --tw-text-opacity: 1;
+      color: rgba(255, 255, 255, var(--tw-text-opacity))
+    }
+
+    .btn,
+    .btn:hover {
+      --tw-bg-opacity: 1
+    }
+
+    .btn:hover {
+      background-color: #e28849;
+    }
+
+    .disclaimer__link {
+      visibility: hidden;
+    }
+
+
+    .btn-white {
+      --tw-bg-opacity: 1;
+      background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+      --tw-border-opacity: 1;
+      border-color: rgba(15, 50, 94, var(--tw-border-opacity));
+      border-width: 1px;
+      --tw-text-opacity: 1;
+      color: rgba(15, 50, 94, var(--tw-text-opacity))
+    }
+
+    .btn-white:hover {
+      background-color: rgba(0, 0, 0, var(--tw-bg-opacity))
+    }
+
+    .btn-orange,
+    .btn-white:hover {
+      --tw-bg-opacity: 1;
+      --tw-text-opacity: 1;
+      color: rgba(255, 255, 255, var(--tw-text-opacity))
+    }
+
+    .btn-orange {
+      background-color: rgba(226, 136, 73, var(--tw-bg-opacity))
+    }
+
+    .btn-orange:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+      --tw-text-opacity: 1;
+      color: rgba(255, 255, 255, var(--tw-text-opacity))
+    }
+
+    label {
+      display: block;
+      margin-bottom: .25rem;
+      margin-top: .75rem
+    }
+
+    input[type=email],
+    input[type=password],
+    input[type=text],
+    textarea {
+      border-radius: .25rem;
+      border-width: 1px;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      padding: .75rem
+    }
+
+    input[type=password]:focus,
+    input[type=text]:focus,
+    table {
+      --tw-border-opacity: 1;
+      border-color: rgba(15, 50, 94, var(--tw-border-opacity))
+    }
+
+    table {
+      margin-top: .75rem;
+      margin-bottom: .75rem;
+      width: 100%;
+      background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+      border-width: 2px
+    }
+
+    table,
+    table th {
+      --tw-bg-opacity: 1
+    }
+
+    table th {
+      background-color: rgba(15, 50, 94, var(--tw-bg-opacity));
+      font-weight: 700;
+      padding: .5rem;
+      text-align: left;
+      --tw-text-opacity: 1;
+      color: rgba(255, 255, 255, var(--tw-text-opacity))
+    }
+
+    table tbody tr:nth-child(2n-1) {
+      --tw-bg-opacity: 1;
+      background-color: rgba(242, 241, 251, var(--tw-bg-opacity))
+    }
+
+    table td {
+      --tw-border-opacity: 1;
+      border-color: rgba(15, 50, 94, var(--tw-border-opacity));
+      border-width: 0 2px 0 0;
+      padding: .5rem
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      box-shadow: 0 0 0 #000;
+      border: 0 solid #0f325e;
+      height: 20px;
+      width: 45px;
+      margin-top: -8px;
+      border-radius: 15px;
+      background: #f08a45;
+      cursor: pointer;
+      -webkit-appearance: none
+    }
+
+    input[type=range]::-moz-range-thumb {
+      box-shadow: 0 0 0 #000;
+      border: 0 solid #0f325e;
+      height: 20px;
+      width: 45px;
+      margin-top: -8px;
+      border-radius: 15px;
+      background: #f08a45;
+      cursor: pointer;
+      -webkit-appearance: none
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 0 #000;
+      background: #0f325e
+    }
+
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 5px;
+      cursor: pointer;
+      box-shadow: 0 0 0 #000;
+      background: #0f325e
+    }
+
+    .host-controls .icon {
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: 50%
+    }
+
+    .host-controls .icon-active {
+      background-color: #0f325e
+    }
+
+    .host-controls .icon-left-right {
+      background-image: url(/images/icons/left-right-blue-23904e07aac131cc492735c0160a7e26.png?vsn=d)
+    }
+
+    .host-controls .icon-left-right.icon-active,
+    .host-controls .icon-left-right:hover {
+      background-image: url(/images/icons/left-right-white-907674e9185a08b34f2cbd15549fe2e7.png?vsn=d)
+    }
+
+    .host-controls .icon-top-left-diagonal {
+      background-image: url(/images/icons/top-left-diagonal-blue-b275d58826ba3a0146530cf14d3cc3e1.png?vsn=d)
+    }
+
+    .host-controls .icon-top-left-diagonal.icon-active,
+    .host-controls .icon-top-left-diagonal:hover {
+      background-image: url(/images/icons/top-left-diagonal-white-34c57eac858c482f07b1b3cee9094501.png?vsn=d)
+    }
+
+    .host-controls .icon-bottom-left-diagonal {
+      background-image: url(/images/icons/bottom-left-diagonal-blue-9eb3e2e5301ad4c76bb3c2cfb61e4d30.png?vsn=d)
+    }
+
+    .host-controls .icon-bottom-left-diagonal.icon-active,
+    .host-controls .icon-bottom-left-diagonal:hover {
+      background-image: url(/images/icons/bottom-left-diagonal-white-3d12af4e7b452f9d57f85e7fa3eede27.png?vsn=d)
+    }
+
+    .host-controls .icon-random {
+      background-image: url(/images/icons/random-blue-293a667537a05eab74f07dbff4669dc2.png?vsn=d)
+    }
+
+    .host-controls .icon-random.icon-active,
+    .host-controls .icon-random:hover {
+      background-image: url(/images/icons/random-white-548b74d5dddde38d61a24ac64a8d3076.png?vsn=d)
+    }
+
+    @-webkit-keyframes spin {
+      to {
+        transform: rotate(1turn)
+      }
+    }
+
+    @-webkit-keyframes ping {
+
+      75%,
+      to {
+        transform: scale(2);
+        opacity: 0
+      }
+    }
+
+    @-webkit-keyframes pulse {
+      50% {
+        opacity: .5
+      }
+    }
+
+    @-webkit-keyframes bounce {
+
+      0%,
+      to {
+        transform: translateY(-25%);
+        -webkit-animation-timing-function: cubic-bezier(.8, 0, 1, 1);
+        animation-timing-function: cubic-bezier(.8, 0, 1, 1)
+      }
+
+      50% {
+        transform: none;
+        -webkit-animation-timing-function: cubic-bezier(0, 0, .2, 1);
+        animation-timing-function: cubic-bezier(0, 0, .2, 1)
+      }
+    }
+
+    li {
+      list-style: none
+    }
+
+    .bg-black {
+      --tw-bg-opacity: 1;
+      background-color: rgba(0, 0, 0, var(--tw-bg-opacity))
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgba(255, 255, 255, var(--tw-bg-opacity))
+    }
+
+    .bg-red-500 {
+      --tw-bg-opacity: 1;
+      background-color: rgba(239, 68, 68, var(--tw-bg-opacity))
+    }
+
+    .bg-green-500 {
+      --tw-bg-opacity: 1;
+      background-color: rgba(16, 185, 129, var(--tw-bg-opacity))
+    }
+
+    .bg-blue {
+      --tw-bg-opacity: 1;
+      background-color: rgba(15, 50, 94, var(--tw-bg-opacity))
+    }
+
+    .bg-orange {
+      --tw-bg-opacity: 1;
+      background-color: rgba(226, 136, 73, var(--tw-bg-opacity))
+    }
+
+    .bg-seethrough {
+      background-color: white;
+    }
+
+    .bg-background {
+      --tw-bg-opacity: 1;
+      background-color: rgba(242, 241, 251, var(--tw-bg-opacity))
+    }
+
+    .hover\:bg-white:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgba(255, 255, 255, var(--tw-bg-opacity))
+    }
+
+    .hover\:bg-gray-300:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgba(209, 213, 219, var(--tw-bg-opacity))
+    }
+
+    .hover\:bg-gray-800:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgba(31, 41, 55, var(--tw-bg-opacity))
+    }
+
+    .hover\:bg-blue:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgba(15, 50, 94, var(--tw-bg-opacity))
+    }
+
+    .hover\:bg-orange:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgba(226, 136, 73, var(--tw-bg-opacity))
+    }
+
+    .hover\:bg-background:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgba(242, 241, 251, var(--tw-bg-opacity))
+    }
+
+    .bg-admin-home,
+    .bg-splash {
+      background-image: url(/images/splash-5e5cf280e5c44171c904adb51c725a6c.jpg?vsn=d)
+    }
+
+    .bg-opacity-25 {
+      --tw-bg-opacity: 0.25
+    }
+
+    .bg-opacity-40 {
+      --tw-bg-opacity: 0.4
+    }
+
+    .bg-center {
+      background-position: 50%
+    }
+
+    .bg-no-repeat {
+      background-repeat: no-repeat
+    }
+
+    .bg-cover {
+      background-size: cover
+    }
+
+    .bg-contain {
+      background-size: contain
+    }
+
+    .border-black {
+      --tw-border-opacity: 1;
+      border-color: rgba(0, 0, 0, var(--tw-border-opacity))
+    }
+
+    .border-white {
+      --tw-border-opacity: 1;
+      border-color: rgba(255, 255, 255, var(--tw-border-opacity))
+    }
+
+    .border-gray-200 {
+      --tw-border-opacity: 1;
+      border-color: rgba(229, 231, 235, var(--tw-border-opacity))
+    }
+
+    .border-gray-300 {
+      --tw-border-opacity: 1;
+      border-color: rgba(209, 213, 219, var(--tw-border-opacity))
+    }
+
+    .border-gray-500 {
+      --tw-border-opacity: 1;
+      border-color: rgba(107, 114, 128, var(--tw-border-opacity))
+    }
+
+    .border-blue {
+      --tw-border-opacity: 1;
+      border-color: rgba(15, 50, 94, var(--tw-border-opacity))
+    }
+
+    .border-orange {
+      --tw-border-opacity: 1;
+      border-color: rgba(226, 136, 73, var(--tw-border-opacity))
+    }
+
+    .rounded {
+      border-radius: .25rem
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .border-none {
+      border-style: none
+    }
+
+    .border-2 {
+      border-width: 2px
+    }
+
+    .border-4 {
+      border-width: 4px
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-r-2 {
+      border-right-width: 2px
+    }
+
+    .cursor-pointer {
+      cursor: pointer
+    }
+
+    .block {
+      display: block
+    }
+
+    .inline-block {
+      display: inline-block
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .table {
+      display: table
+    }
+
+    .contents {
+      display: contents
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .flex-row {
+      flex-direction: row
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .items-start {
+      align-items: flex-start
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .content-start {
+      align-content: flex-start
+    }
+
+    .self-start {
+      align-self: flex-start
+    }
+
+    .justify-end {
+      justify-content: flex-end
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .flex-1 {
+      flex: 1 1 0%
+    }
+
+    .flex-initial {
+      flex: 0 1 auto
+    }
+
+    .flex-none {
+      flex: none
+    }
+
+    .flex-grow {
+      flex-grow: 1
+    }
+
+    .font-bold {
+      font-weight: 700
+    }
+
+    .h-4 {
+      height: 1rem
+    }
+
+    .h-6 {
+      height: 1.5rem
+    }
+
+    .h-10 {
+      height: 2.5rem
+    }
+
+    .h-60 {
+      height: 15rem
+    }
+
+    .h-full {
+      height: 100%
+    }
+
+    .h-header {
+      height: 124px
+    }
+
+    .h-sidebarIcon {
+      height: 30px
+    }
+
+    .text-xs {
+      font-size: .75rem;
+      line-height: 1rem
+    }
+
+    .text-sm {
+      font-size: .875rem;
+      line-height: 1.25rem
+    }
+
+    .text-lg {
+      font-size: 1.125rem
+    }
+
+    .text-lg,
+    .text-xl {
+      line-height: 1.75rem
+    }
+
+    .text-xl {
+      font-size: 1.25rem
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+    }
+
+    .text-8xl {
+      font-size: 6rem;
+      line-height: 1
+    }
+
+    .m-0 {
+      margin: 0
+    }
+
+    .m-4 {
+      margin: 1rem
+    }
+
+    .m-5 {
+      margin: 1.25rem
+    }
+
+    .m-8 {
+      margin: 2rem
+    }
+
+    .m-auto {
+      margin: auto
+    }
+
+    .my-1 {
+      margin-top: .25rem;
+      margin-bottom: .25rem
+    }
+
+    .mx-1 {
+      margin-left: .25rem;
+      margin-right: .25rem
+    }
+
+    .my-3 {
+      margin-top: .75rem;
+      margin-bottom: .75rem
+    }
+
+    .mx-3 {
+      margin-left: .75rem;
+      margin-right: .75rem
+    }
+
+    .my-4 {
+      margin-top: 1rem;
+      margin-bottom: 1rem
+    }
+
+    .my-5 {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem
+    }
+
+    .mx-5 {
+      margin-left: 1.25rem;
+      margin-right: 1.25rem
+    }
+
+    .my-8 {
+      margin-top: 2rem;
+      margin-bottom: 2rem
+    }
+
+    .mx-8 {
+      margin-left: 2rem;
+      margin-right: 2rem
+    }
+
+    .mt-0 {
+      margin-top: 0
+    }
+
+    .mb-0 {
+      margin-bottom: 0
+    }
+
+    .mt-1 {
+      margin-top: .25rem
+    }
+
+    .mr-1 {
+      margin-right: .25rem
+    }
+
+    .mb-1 {
+      margin-bottom: .25rem
+    }
+
+    .ml-1 {
+      margin-left: .25rem
+    }
+
+    .mr-2 {
+      margin-right: .5rem
+    }
+
+    .mb-2 {
+      margin-bottom: .5rem
+    }
+
+    .mt-3 {
+      margin-top: .75rem
+    }
+
+    .mr-3 {
+      margin-right: .75rem
+    }
+
+    .mb-3 {
+      margin-bottom: .75rem
+    }
+
+    .ml-3 {
+      margin-left: .75rem
+    }
+
+    .mt-4 {
+      margin-top: 1rem
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem
+    }
+
+    .ml-4 {
+      margin-left: 1rem
+    }
+
+    .mt-5 {
+      margin-top: 1.25rem
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem
+    }
+
+    .mt-8 {
+      margin-top: 2rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .max-w-3xl {
+      max-width: 48rem
+    }
+
+    .max-w-screen-xl {
+      max-width: 1280px
+    }
+
+    .min-h-full {
+      min-height: 100%
+    }
+
+    .min-h-screen {
+      min-height: 100vh
+    }
+
+    .opacity-0 {
+      opacity: 0
+    }
+
+    .opacity-100 {
+      opacity: 1
+    }
+
+    .outline-none {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    .overflow-scroll {
+      overflow: scroll
+    }
+
+    .overflow-y-scroll {
+      overflow-y: scroll
+    }
+
+    .p-0 {
+      padding: 0
+    }
+
+    .p-1 {
+      padding: .25rem
+    }
+
+    .p-2 {
+      padding: .5rem
+    }
+
+    .p-3 {
+      padding: .75rem
+    }
+
+    .p-4 {
+      padding: 1rem
+    }
+
+    .p-5 {
+      padding: 1.25rem
+    }
+
+    .p-6 {
+      padding: 1.5rem
+    }
+
+    .p-10 {
+      padding: 2.5rem
+    }
+
+    .py-1 {
+      padding-top: .25rem;
+      padding-bottom: .25rem
+    }
+
+    .py-2 {
+      padding-top: .5rem;
+      padding-bottom: .5rem
+    }
+
+    .px-2 {
+      padding-left: .5rem;
+      padding-right: .5rem
+    }
+
+    .py-3 {
+      padding-top: .75rem;
+      padding-bottom: .75rem
+    }
+
+    .px-8 {
+      padding-left: 2rem;
+      padding-right: 2rem
+    }
+
+    .px-10 {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem
+    }
+
+    .pt-0 {
+      padding-top: 0
+    }
+
+    .pr-6 {
+      padding-right: 1.5rem
+    }
+
+    .fixed {
+      position: fixed
+    }
+
+    .absolute {
+      position: absolute
+    }
+
+    .relative {
+      position: relative
+    }
+
+    .top-0 {
+      top: 0
+    }
+
+    .right-0 {
+      right: 0
+    }
+
+    .bottom-0 {
+      bottom: 0
+    }
+
+    .left-0 {
+      left: 0
+    }
+
+    .resize {
+      resize: both
+    }
+
+    * {
+      --tw-shadow: 0 0 transparent
+    }
+
+    .shadow-lg {
+      --tw-shadow: 3px 4px 5px 4px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 0 transparent, 0 0 transparent, var(--tw-shadow);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 transparent), var(--tw-ring-shadow, 0 0 transparent), var(--tw-shadow)
+    }
+
+    * {
+      --tw-ring-inset: var(--tw-empty,
+          /*!*/
+          /*!*/
+        );
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgba(59, 130, 246, 0.5);
+      --tw-ring-offset-shadow: 0 0 transparent;
+      --tw-ring-shadow: 0 0 transparent
+    }
+
+    .text-left {
+      text-align: left
+    }
+
+    .text-center {
+      text-align: center
+    }
+
+    .text-right {
+      text-align: right
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgba(255, 255, 255, var(--tw-text-opacity))
+    }
+
+    .text-gray-300 {
+      --tw-text-opacity: 1;
+      color: rgba(209, 213, 219, var(--tw-text-opacity))
+    }
+
+    .text-blue {
+      --tw-text-opacity: 1;
+      color: rgba(15, 50, 94, var(--tw-text-opacity))
+    }
+
+    .hover\:text-black:hover {
+      --tw-text-opacity: 1;
+      color: rgba(0, 0, 0, var(--tw-text-opacity))
+    }
+
+    .hover\:text-white:hover {
+      --tw-text-opacity: 1;
+      color: rgba(255, 255, 255, var(--tw-text-opacity))
+    }
+
+    .hover\:text-orange:hover {
+      --tw-text-opacity: 1;
+      color: rgba(226, 136, 73, var(--tw-text-opacity))
+    }
+
+    .italic {
+      font-style: italic
+    }
+
+    .visible {
+      visibility: visible
+    }
+
+    .w-4 {
+      width: 1rem
+    }
+
+    .w-6 {
+      width: 1.5rem
+    }
+
+    .w-10 {
+      width: 2.5rem
+    }
+
+    .w-40 {
+      width: 10rem
+    }
+
+    .w-96 {
+      width: 24rem
+    }
+
+    .w-1\/2 {
+      width: 50%
+    }
+
+    .w-1\/3 {
+      width: 33.333333%
+    }
+
+    .w-2\/3 {
+      width: 66.666667%
+    }
+
+    .w-1\/4 {
+      width: 25%
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .w-screen {
+      width: 100vw
+    }
+
+    .w-sidebarIcon {
+      width: 30px
+    }
+
+    .transform {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .transition {
+      transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+      transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+      transition-duration: .15s
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(1turn)
+      }
+    }
+
+    @keyframes ping {
+
+      75%,
+      to {
+        transform: scale(2);
+        opacity: 0
+      }
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .5
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      to {
+        transform: translateY(-25%);
+        -webkit-animation-timing-function: cubic-bezier(.8, 0, 1, 1);
+        animation-timing-function: cubic-bezier(.8, 0, 1, 1)
+      }
+
+      50% {
+        transform: none;
+        -webkit-animation-timing-function: cubic-bezier(0, 0, .2, 1);
+        animation-timing-function: cubic-bezier(0, 0, .2, 1)
+      }
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: Boboto, sans-serif;
+      line-height: 1.5;
+      --tw-bg-opacity: 1;
+      background-image: url('images/Utrecht.jpg');
+      width: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      line-height: 2rem
+    }
+
+    a {
+      text-decoration: none
+    }
+
+    table a:hover {
+      --tw-text-opacity: 1;
+      color: rgba(226, 136, 73, var(--tw-text-opacity))
+    }
+
+    .button a,
+    button {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      padding: 10px 20px;
+      background: #bec4ce;
+      border-radius: 0;
+      outline: none;
+      border: none;
+      color: #000
+    }
+
+    .button a:hover,
+    button:hover {
+      background: #dbdfe4;
+      cursor: pointer
+    }
+
+    .alert.alert-danger,
+    .alert.alert-info {
+      padding: 10px 20px
+    }
+
+    .alert.alert-info {
+      border: 1px solid #85dacc
+    }
+
+    .alert.alert-danger {
+      border: 1px solid #f55158
+    }
+
+    .invalid-feedback {
+      color: #a94442;
+      display: block;
+      margin: -1rem 0 2rem
+    }
+
+    .phx-no-feedback.invalid-feedback,
+    .phx-no-feedback .invalid-feedback {
+      display: none
+    }
+
+    .phx-disconnected {
+      cursor: pointer;
+    }
+
+    .phx-disconnected * {
+      pointer-events: pointer;
+    }
+
+    .phx-modal {
+      opacity: 1 !important;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: #000;
+      background-color: rgba(0, 0, 0, .4)
+    }
+
+    .phx-modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%
+    }
+
+    .phx-modal-close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: 700
+    }
+
+    .phx-modal-close:focus,
+    .phx-modal-close:hover {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer
+    }
+
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px
+    }
+
+    .alert-info {
+      color: #31708f;
+      background-color: #d9edf7;
+      border-color: #bce8f1
+    }
+
+    .alert-warning {
+      color: #8a6d3b;
+      background-color: #fcf8e3;
+      border-color: #faebcc
+    }
+
+    .alert-danger {
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1
+    }
+
+    .alert p {
+      margin-bottom: 0
+    }
+
+    .alert:empty {
+      display: none
+    }
+
+    .help-block {
+      display: block
+    }
+
+    @media (min-width:640px) {
+      .sm\:block {
+        display: block
+      }
+
+      .sm\:hidden {
+        display: none
+      }
+
+      .sm\:flex-row {
+        flex-direction: row
+      }
+
+      .sm\:m-20 {
+        margin: 5rem
+      }
+
+      .sm\:w-1\/2 {
+        width: 50%
+      }
+    }
+
+    @media (min-width:1024px) {
+      .lg\:flex-row {
+        flex-direction: row
+      }
+
+      .lg\:mt-24 {
+        margin-top: 6rem
+      }
+
+      .lg\:w-1\/3 {
+        width: 33.333333%
+      }
+    }
+
+
+    .show-week-numbers {
+      --litepicker-month-width: calc(var(--litepicker-day-width) * 8)
+    }
+
+    .litepicker {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.8em;
+      display: none
+    }
+
+    .litepicker button {
+      border: none;
+      background: none
+    }
+
+    .litepicker .container__main {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex
+    }
+
+    .litepicker .container__months {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      background-color: var(--litepicker-container-months-color-bg);
+      border-radius: 5px;
+      -webkit-box-shadow: 0 0 5px var(--litepicker-container-months-box-shadow-color);
+      box-shadow: 0 0 5px var(--litepicker-container-months-box-shadow-color);
+      width: calc(var(--litepicker-month-width) + 10px);
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box
+    }
+
+    .litepicker .container__months.columns-2 {
+      width: calc((var(--litepicker-month-width) * 2) + 20px)
+    }
+
+    .litepicker .container__months.columns-3 {
+      width: calc((var(--litepicker-month-width) * 3) + 30px)
+    }
+
+    .litepicker .container__months.columns-4 {
+      width: calc((var(--litepicker-month-width) * 4) + 40px)
+    }
+
+    .litepicker .container__months.split-view .month-item-header .button-previous-month,
+    .litepicker .container__months.split-view .month-item-header .button-next-month {
+      visibility: visible
+    }
+
+    .litepicker .container__months .month-item {
+      padding: 5px;
+      width: var(--litepicker-month-width);
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box
+    }
+
+    .litepicker .container__months .month-item-header {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      font-weight: 500;
+      padding: 10px 5px;
+      text-align: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      color: var(--litepicker-month-header-color)
+    }
+
+    .litepicker .container__months .month-item-header div {
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1
+    }
+
+    .litepicker .container__months .month-item-header div>.month-item-name {
+      margin-right: 5px
+    }
+
+    .litepicker .container__months .month-item-header div>.month-item-year {
+      padding: 0
+    }
+
+    .litepicker .container__months .month-item-header .reset-button {
+      color: var(--litepicker-button-reset-color)
+    }
+
+    .litepicker .container__months .month-item-header .reset-button>svg {
+      fill: var(--litepicker-button-reset-color)
+    }
+
+    .litepicker .container__months .month-item-header .reset-button * {
+      pointer-events: none
+    }
+
+    .litepicker .container__months .month-item-header .reset-button:hover {
+      color: var(--litepicker-button-reset-color-hover)
+    }
+
+    .litepicker .container__months .month-item-header .reset-button:hover>svg {
+      fill: var(--litepicker-button-reset-color-hover)
+    }
+
+    .litepicker .container__months .month-item-header .button-previous-month,
+    .litepicker .container__months .month-item-header .button-next-month {
+      visibility: hidden;
+      text-decoration: none;
+      padding: 3px 5px;
+      border-radius: 3px;
+      -webkit-transition: color 0.3s, border 0.3s;
+      transition: color 0.3s, border 0.3s;
+      cursor: default
+    }
+
+    .litepicker .container__months .month-item-header .button-previous-month *,
+    .litepicker .container__months .month-item-header .button-next-month * {
+      pointer-events: none
+    }
+
+    .litepicker .container__months .month-item-header .button-previous-month {
+      color: var(--litepicker-button-prev-month-color)
+    }
+
+    .litepicker .container__months .month-item-header .button-previous-month>svg,
+    .litepicker .container__months .month-item-header .button-previous-month>img {
+      fill: var(--litepicker-button-prev-month-color)
+    }
+
+    .litepicker .container__months .month-item-header .button-previous-month:hover {
+      color: var(--litepicker-button-prev-month-color-hover)
+    }
+
+    .litepicker .container__months .month-item-header .button-previous-month:hover>svg {
+      fill: var(--litepicker-button-prev-month-color-hover)
+    }
+
+    .litepicker .container__months .month-item-header .button-next-month {
+      color: var(--litepicker-button-next-month-color)
+    }
+
+    .litepicker .container__months .month-item-header .button-next-month>svg,
+    .litepicker .container__months .month-item-header .button-next-month>img {
+      fill: var(--litepicker-button-next-month-color)
+    }
+
+    .litepicker .container__months .month-item-header .button-next-month:hover {
+      color: var(--litepicker-button-next-month-color-hover)
+    }
+
+    .litepicker .container__months .month-item-header .button-next-month:hover>svg {
+      fill: var(--litepicker-button-next-month-color-hover)
+    }
+
+    .litepicker .container__months .month-item-weekdays-row {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-self: center;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      color: var(--litepicker-month-weekday-color)
+    }
+
+    .litepicker .container__months .month-item-weekdays-row>div {
+      padding: 5px 0;
+      font-size: 85%;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      width: var(--litepicker-day-width);
+      text-align: center
+    }
+
+    .litepicker .container__months .month-item:first-child .button-previous-month {
+      visibility: visible
+    }
+
+    .litepicker .container__months .month-item:last-child .button-next-month {
+      visibility: visible
+    }
+
+    .litepicker .container__months .month-item.no-previous-month .button-previous-month {
+      visibility: hidden
+    }
+
+    .litepicker .container__months .month-item.no-next-month .button-next-month {
+      visibility: hidden
+    }
+
+    .litepicker .container__days {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      justify-self: center;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      text-align: center;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box
+    }
+
+    .litepicker .container__days>div,
+    .litepicker .container__days>a {
+      padding: 5px 0;
+      width: var(--litepicker-day-width)
+    }
+
+    .litepicker .container__days .day-item {
+      color: var(--litepicker-day-color);
+      text-align: center;
+      text-decoration: none;
+      border-radius: 3px;
+      -webkit-transition: color 0.3s, border 0.3s;
+      transition: color 0.3s, border 0.3s;
+      cursor: default
+    }
+
+    .litepicker .container__days .day-item:hover {
+      color: var(--litepicker-day-color-hover);
+      -webkit-box-shadow: inset 0 0 0 1px var(--litepicker-day-color-hover);
+      box-shadow: inset 0 0 0 1px var(--litepicker-day-color-hover)
+    }
+
+    .litepicker .container__days .day-item.is-today {
+      color: var(--litepicker-is-today-color)
+    }
+
+    .litepicker .container__days .day-item.is-locked {
+      color: var(--litepicker-is-locked-color)
+    }
+
+    .litepicker .container__days .day-item.is-locked:hover {
+      color: var(--litepicker-is-locked-color);
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      cursor: default
+    }
+
+    .litepicker .container__days .day-item.is-in-range {
+      background-color: var(--litepicker-is-in-range-color);
+      border-radius: 0
+    }
+
+    .litepicker .container__days .day-item.is-start-date {
+      color: var(--litepicker-is-start-color);
+      background-color: var(--litepicker-is-start-color-bg);
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0
+    }
+
+    .litepicker .container__days .day-item.is-start-date.is-flipped {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px
+    }
+
+    .litepicker .container__days .day-item.is-end-date {
+      color: var(--litepicker-is-end-color);
+      background-color: var(--litepicker-is-end-color-bg);
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px
+    }
+
+    .litepicker .container__days .day-item.is-end-date.is-flipped {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0
+    }
+
+    .litepicker .container__days .day-item.is-start-date.is-end-date {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px
+    }
+
+    .litepicker .container__days .day-item.is-highlighted {
+      color: var(--litepicker-highlighted-day-color);
+      background-color: var(--litepicker-highlighted-day-color-bg)
+    }
+
+    .litepicker .container__days .week-number {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      color: var(--litepicker-month-week-number-color);
+      font-size: 85%
+    }
+
+    .litepicker .container__footer {
+      text-align: right;
+      padding: 10px 5px;
+      margin: 0 5px;
+      background-color: var(--litepicker-footer-color-bg);
+      -webkit-box-shadow: inset 0px 3px 3px 0px var(--litepicker-footer-box-shadow-color);
+      box-shadow: inset 0px 3px 3px 0px var(--litepicker-footer-box-shadow-color);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px
+    }
+
+    .litepicker .container__footer .preview-date-range {
+      margin-right: 10px;
+      font-size: 90%
+    }
+
+    .litepicker .container__footer .button-cancel {
+      background-color: var(--litepicker-button-cancel-color-bg);
+      color: var(--litepicker-button-cancel-color);
+      border: 0;
+      padding: 3px 7px 4px;
+      border-radius: 3px
+    }
+
+    .litepicker .container__footer .button-cancel * {
+      pointer-events: none
+    }
+
+    .litepicker .container__footer .button-apply {
+      background-color: var(--litepicker-button-apply-color-bg);
+      color: var(--litepicker-button-apply-color);
+      border: 0;
+      padding: 3px 7px 4px;
+      border-radius: 3px;
+      margin-left: 10px;
+      margin-right: 10px
+    }
+
+    .litepicker .container__footer .button-apply:disabled {
+      opacity: 0.7
+    }
+
+    .litepicker .container__footer .button-apply * {
+      pointer-events: none
+    }
+
+    .litepicker .container__tooltip {
+      position: absolute;
+      margin-top: -4px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: var(--litepicker-tooltip-color-bg);
+      -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      white-space: nowrap;
+      font-size: 11px;
+      pointer-events: none;
+      visibility: hidden
+    }
+
+    .litepicker .container__tooltip:before {
+      position: absolute;
+      bottom: -5px;
+      left: calc(50% - 5px);
+      border-top: 5px solid rgba(0, 0, 0, 0.12);
+      border-right: 5px solid transparent;
+      border-left: 5px solid transparent;
+      content: ""
+    }
+
+    .litepicker .container__tooltip:after {
+      position: absolute;
+      bottom: -4px;
+      left: calc(50% - 4px);
+      border-top: 4px solid var(--litepicker-tooltip-color-bg);
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      content: ""
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&amp;display=swap" rel="stylesheet">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title data-prefix="EMDRMeeting - ">EMDRMeeting - Algemene Voorwaarden</title>
+  <link rel="stylesheet" href="/css/app-27e8c7ba5020b1246ce1f8c161137d6b.css?vsn=d">
+</head>
+<header class="h-header w-full flex justify-between bg-white shadow-lg">
+  <a href="/" class="block logo mx-8 ">
+    <img src="https://app.emdrmeeting.com/images/logo.png" alt="YouSurge logo" style="width: 300px; height: 60px; margin-top: 25px;"><span class="subtitle"></span>
+  </a>
+  <li style="margin-top: 30px;" class="text-xl">
+    <a class="block flex items-center py-3 px-8 hover:bg-background" data-phx-link="redirect" data-phx-link-state="push" href="/home">
+      <div class="w-sidebarIcon h-sidebarIcon bg-contain bg-center bg-no-repeat mr-2" style="background-image: url(/images/icons/icon-sessions.png)"></div>
+      <div>Sessions</div>
+    </a>
+
+  </li>
+  <li style="margin-top: 30px;" class="text-xl">
+    <a class="block flex items-center py-3 px-8 hover:bg-background bg-background" data-phx-link="redirect" data-phx-link-state="push" href="/subscription">
+      <div class="w-sidebarIcon h-sidebarIcon bg-contain bg-center bg-no-repeat mr-2" style="background-image: url(/images/icons/icon-credits.png)"></div>
+      <div>Subscription</div>
+    </a>
+
+  </li>
+
+  <li style="margin-top: 30px;" class="text-xl">
+
+    <a class="block flex items-center py-3 px-8 hover:bg-background" data-phx-link="redirect" data-phx-link-state="push" href="/recentactivity">
+      <div class="w-sidebarIcon h-sidebarIcon bg-contain bg-center bg-no-repeat mr-2" style="background-image: url(/images/icons/icon-account.png)"></div>
+      <div>Activity</div>
+    </a>
+
+  </li>
+  <li style="margin-top: 30px;" class="text-xl">
+    <a class="block flex items-center py-3 px-8 hover:bg-background" data-phx-link="redirect" data-phx-link-state="push" href="/users/log_out">
+      <div class="w-sidebarIcon h-sidebarIcon bg-contain bg-center bg-no-repeat mr-2" style="background-image: url(/images/icons/icon-logout.png)"></div>
+      <div>Log Out</div>
+    </a>
+</header>
+
+<body oncontextmenu="return false" onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" oncontextmenu="return false" class="" style="" data-new-gr-c-s-check-loaded="14.1026.0" data-gr-ext-installed="">
+  <form class="paymentone" action="/payments/confirmtos/silver" method="post">
+
+
+  <main role="main" class="">
+    <div
+      data-phx-session="SFMyNTY.g2gDaAJhBHQAAAAHZAACaWRtAAAAFHBoeC1GcDZTVjRTT2VNaW5nTVhCZAAKcGFyZW50X3BpZGQAA25pbGQACHJvb3RfcGlkZAADbmlsZAAJcm9vdF92aWV3ZAAjRWxpeGlyLkVtZHJXZWIuQWRtaW5MaXZlLkNvbmZpcm1Ub3NkAAZyb3V0ZXJkABVFbGl4aXIuRW1kcldlYi5Sb3V0ZXJkAAdzZXNzaW9udAAAAABkAAR2aWV3ZAAjRWxpeGlyLkVtZHJXZWIuQWRtaW5MaXZlLkNvbmZpcm1Ub3NuBgBa2qt9ewFiAAFRgA.CBiOA0zL2CWt2p0dF4Fhf6XzHXxLFlygk9WDjHf5SgU"
+      data-phx-view="AdminLive.ConfirmTos" id="phx-Fp6SV4SOeMingMXB" class="phx-connected" data-phx-root-id="phx-Fp6SV4SOeMingMXB">
+      <div class="bg-admin-home bg-cover bg-center min-h-screen">
+        <div class="flex justify-center">
+          <div class="content-box w-1/2 mt-10">
+            <div class="border border-gray-500 p-4 overflow-y-scroll" style="max-height: 400px;">
+              <h2 class="text-xl text-center mb-4 font-bold">Algemene voorwaarden</h2>
+              <p>Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes, overeenkomsten en leveringen of gebruik van de diensten van EMDR Meeting, waarvan de functies beschikbaar zijn gesteld op www.emdrmeeting.com (hierna:
+                “Diensten”), gelden onderstaande algemene voorwaarden.
+              </p>
+              <h3 class="text-lg font-bold mt-4">De diensten van EMDR Meeting</h3>
+              <p>1. De Diensten van EMDR Meeting zijn bedoeld voor psychologen en psychotherapeuten. U bepaalt zelf of u aan deze kwalificatie voldoet en bent hiervoor zelf verantwoordelijk. EMDR Meeting accepteert hierin geen aansprakelijkheid,
+                vanuit u of vanuit derde partijen.
+              </p>
+              <p>2. De Diensten van EMDR Meeting bieden u de mogelijkheid om via een online platform EMDR- of reguliere behandelingen uit te voeren. U bepaalt zelf hoe u de Diensten inzet en voor welke specifieke doelen.
+              </p>
+              <p>3. Om gebruik te kunnen maken van de Diensten, dient u zich te registreren. Nadat de registratie is afgerond, komt de Overeenkomst tussen EMDR Meeting en u (hierna: de “Overeenkomst”) tot stand.
+              </p>
+              <p>4. Het platform van EMDR Meeting is te kwalificeren als een medisch hulpmiddel in de zin van Verordening (EU) 2017/745 van het Europees Parlement en de Raad van 5 april 2017 betreffende medische hulpmiddelen. Dat betekent dat EMDR
+                Meeting op grond van deze verordening onder andere: (1) geen tekst, benamingen, merken, afbeeldingen en andere al dan niet figuratieve tekens zal gebruiken die u kunnen misleiden met betrekking tot het beoogde doeleinde, de veiligheid
+                en de prestaties van het platform. (2) uw klachten of meldingen over vermoedelijke incidenten in verband met de Diensten uiterst serieus neemt en een register bijhoudt van de eventuele klachten.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Beveiliging en privacy</h3>
+              <p>1. EMDR Meeting zal zich maximaal inspannen om de Diensten te beveiligen tegen misbruik en ongeautoriseerde toegang tot uw gegevens.
+              </p>
+              <p>2. Bij gebruik van de Diensten worden uw persoonsgegevens verwerkt. Raadpleeg de privacystatement voor meer informatie.
+              </p>
+              <p>3. De data en gegevens die u invoert via de Diensten blijven uw eigendom. U verstrekt aan EMDR Meeting een gebruiksrecht voor deze data en gegevens voor de duur van de Overeenkomst. U kunt dit gebruiksrecht beëindigen door de
+                Overeenkomst op te zeggen en daarbij te verzoeken om de data en gegevens te verwijderen. Deze informatie wordt gedeeld met Welbewust Psycholoog B.V., enkel om accounts aan te maken en klantenservice te bieden.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Gebruiksregels en account</h3>
+              <p>1. Het is verboden om de Diensten te gebruiken op een manier die in strijd is met deze voorwaarden of met toepasselijke wet- en regelgeving.
+              </p>
+              <p>2. Indien EMDR Meeting constateert dat u deze voorwaarden of de wet overtreedt, of een klacht hierover ontvangt, mag EMDR Meeting ingrijpen om de Overeenkomst te beëindigen. EMDR Meeting mag u dan de toegang tot de betreffende
+                functies ontzeggen.
+              </p>
+              <p>3. Het door u aangemaakte account is persoonlijk en mag alleen door uzelf gebruikt worden. U dient de toegang tot het Account middels de gebruikersnaam en het wachtwoord af te schermen voor onbevoegden. In het bijzonder dient het
+                wachtwoord strikt geheimgehouden te worden. EMDR Meeting gaat ervan uit dat alles wat gebeurt vanaf uw account, na aanmelding met gebruikersnaam en wachtwoord, onder uw leiding en toezicht gebeurt. Er mag per persoon slechts één
+                account aangemaakt worden.
+              </p>
+              <p>4. EMDR Meeting is te allen tijde gerechtigd om aangifte te doen van geconstateerde strafbare feiten en zal zijn medewerking verlenen aan bevoegd gegeven bevelen.
+              </p>
+              <p>5. U bent verplicht om alle redelijke aanwijzingen van EMDR Meeting te volgen die betrekking hebben op het gebruik van de Diensten.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Vergoeding en facturatie</h3>
+              <p>1. Voor het gebruik van de Diensten bent u, na een eventuele proefperiode, een vergoeding verschuldigd. Betaling kan worden verricht volgens de betaalinstructies op www.emdrmeeting.com. EMDR Meeting is gerechtigd om elektronisch te
+                factureren.
+              </p>
+              <p>2. Indien een gratis proefperiode van toepassing is zal dit nooit stilzwijgend overgaan in een account waarvoor een vergoeding verschuldigd is. U zal worden gevraagd hierin een beslissing te nemen voordat de proefperiode afloopt.
+                Indien u besluit om niet over te gaan naar een account waarvoor een vergoeding verschuldigd is, of geen beslissing neemt, verloopt het account automatisch.
+              </p>
+              <p>3. Voor alle facturen geldt een betalingstermijn van 30 dagen, tenzij de factuur een andere betalingstermijn vermeldt of schriftelijk een andere termijn is overeengekomen.
+              </p>
+              <p>4. Alle betalingen worden verwerkt via betaaldienstverlening Mollie. De voorwaarden van Mollie zijn hierbij van toepassing. EMDR Meeting is niet aansprakelijk voor hoe Mollie B.V. uw persoonlijke gegevens verwerkt.
+              </p>
+              <p>5. Alle door EMDR Meeting genoemde prijzen zijn in euro’s en inclusief btw, tenzij dit schriftelijk anders is overeengekomen.
+              </p>
+              <p>6. Als de vergoeding niet op de afgesproken tijd door EMDR Meeting ontvangen is ontvangt u een herinnering, als 30 dagen na de gestuurde herinnering de vergoeding nog niet ontvangen is wordt uw account door EMDR Meeting tijdelijk
+                geblokkeerd. Nadat EMDR Meeting de vereiste betaling heeft ontvangen, wordt het account weer geactiveerd.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Beschikbaarheid, wijziging en ondersteuning</h3>
+              <p>1. EMDR Meeting streeft ernaar om de Diensten zoveel mogelijk beschikbaar te houden, maar garandeert geen ononderbroken beschikbaarheid.
+              </p>
+              <p>2. EMDR Meeting heeft het recht de Diensten of een onderdeel daarvan te wijzigen en te onderhouden.
+              </p>
+              <p>3. Onderhoud en wijziging van de Diensten door EMDR Meeting kan tot gevolg hebben dat de Dienst tijdelijk geheel of gedeeltelijk buiten gebruik is. EMDR Meeting zal zich inspannen deze beperkingen in het gebruik tijdig aan te
+                kondigen.
+              </p>
+              <p>4. Voor (technische) ondersteuning kunt u terecht bij de helpdesk van EMDR Meeting via het e-mail contact@welbewustpsycholoog.nl.
+              </p>
+              <p>5. EMDR Meeting streeft ernaar om helpdesk verzoeken binnen een redelijke termijn af te handelen. De tijd die nodig is voor het oplossen van meldingen kan variëren.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Wijziging algemene voorwaarden</h3>
+              <p>1. EMDR Meeting heeft het recht om deze Gebruiksvoorwaarden te wijzigen of aan te vullen. EMDR Meeting zal de wijziging of aanvulling ten minste 14 dagen vóór inwerkingtreding per e-mail bij u aankondigen.
+              </p>
+              <p>2. Als u de wijzigingen of aanvullingen niet wenst te accepteren, kunt u binnen 14 dagen na bekendmaking gemotiveerd bezwaar maken, waarna EMDR Meeting de aanpassing of aanvulling zal heroverwegen. Als EMDR Meeting besluit om vast te
+                houden aan de wijziging of aanvulling, kunt u de Overeenkomst Schriftelijk opzeggen tegen de datum waarop de wijziging in werking treedt. Het voorgaande geldt niet voor wijzigingen op grond van de wet en wijzigingen van ondergeschikt
+                belang.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Duur van de Overeenkomst</h3>
+              <p>1. Tenzij anders overeengekomen wordt de Overeenkomst aangegaan voor een onbepaalde periode.
+              </p>
+              <p>2. De Overeenkomst kan te allen tijde door u worden opgezegd.
+              </p>
+              <p>3. EMDR Meeting kan de Overeenkomst opzeggen wanneer de onder Vergoeding en facturatie punt 5 genoemde termijn is verstreken zonder dat de vergoeding door EMDR Meeting ontvangen is en wanneer u het Algemen voorwaarden van de EMDR-app
+                heeft overtreden.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Intellectuele eigendomsrechten</h3>
+              <p>1. Alle Intellectuele Eigendomsrechten op de Diensten, alsmede alle informatie en afbeeldingen op de Website berusten bij EMDR Meeting.
+              </p>
+              <p>2. U krijgt van EMDR Meeting de niet-exclusieve, niet-overdraagbare en niet-sublicentieerbare gebruiksrechten ten aanzien van de Diensten, alsmede alle informatie en afbeeldingen op www.emdrmeeting.com. De gebruiksrechten gelden voor
+                de duur van de Overeenkomst.
+              </p>
+              <p>3. U bent niet gerechtigd om wijzigingen aan te brengen in de Diensten en u hebt geen recht op een kopie van de bronbestanden van de Diensten, behoudens de gevallen waarin dat wettelijk is toegestaan.
+              </p>
+              <p>4. EMDR Meeting kan (technische) maatregelen nemen ter bescherming van de Diensten. Indien EMDR Meeting dergelijke beveiligingsmaatregelen heeft genomen, is het u niet toegestaan om deze beveiliging te ontwijken of te verwijderen.
+              </p>
+              <p>5. Het is u niet toegestaan om enige aanduiding van Intellectuele Eigendomsrechten uit de Diensten te verwijderen of aan te passen. Het is tevens niet toegestaan om aanduidingen omtrent het vertrouwelijke karakter uit de Diensten te
+                verwijderen.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Klachtenprocedure</h3>
+              <p>1. EMDR Meeting neemt klachten en meldingen ten aanzien van de Diensten uiterst serieus. In geval van vragen, opmerkingen en klachten, kan contact via e-mail info@emdrmeeting.com .
+              </p>
+              <p>2. Op klachten over de Diensten zal EMDR Meeting zo spoedig mogelijk, maar uiterlijk binnen veertien (14) dagen na ontvangst reageren.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Overige bepalingen</h3>
+              <p>1. Op de Overeenkomst is Nederlands recht van toepassing, tenzij dwingend consumentenrecht anders voorschrijft.
+              </p>
+              <p>2. EMDR Meeting is gerechtigd om zijn rechten en plichten die voortvloeien uit de Overeenkomst over te dragen aan een derde partij die EMDR Meeting of zijn bedrijfsactiviteiten overneemt.
+              </p>
+              <p>3. U dient EMDR Meeting onverwijld op de hoogte te stellen bij een wijziging in naam, (post)adres, e-mailadres en overige voor de uitvoering van de Overeenkomst relevante informatie en gegevens.
+              </p>
+              <h3 class="text-lg font-bold mt-4">Vragen?</h3>
+              Als u vragen hebt, aarzel dan niet om contact met EMDR Meeting op te nemen via email info@emdrmeeting.com.
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn px-10 mt-5">Voorwaarden accepteren en betalen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </main>
+  <meta charset="UTF-8" content="W1YafFdBJBBAGzNQAwUfPQcXGh9AKCwqj2_39swTppx6rAtzFPhP2fIx" csrf-param="_csrf_token" method-param="_method" name="csrf-token">
+  <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+    <script type="text/javascript">
+      history.pushState(null, null, location.href);
+      history.back();
+      history.forward();
+      window.onpopstate = function () { history.go(1); };
+  </script>
+  <script type="text/javascript">
+  document.onkeydown = function(e) {
+if(event.keyCode == 123) {
+   return false;
+}
+if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+   return false;
+}
+if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+   return false;
+}
+if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+   return false;
+}
+if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+   return false;
+}
+}
+  </script>
+  <script type="text/javascript" src="/js/app-2093a746a5b3cf2000f63f409a27de25.js?vsn=d"></script>
+  <footer style="background-color: rgba(15,50,94,var(--tw-bg-opacity)); margin-top: -120px;" class="h-header w-full flex justify-between  shadow-lg">
+    <!-- <a href="/home" class="block logo mx-8 ">
+      <img src="https://app.emdrmeeting.com/images/logo.png" alt="YouSurge logo" style="width: 300px; height: 60px; margin-top: 25px;"><span class="subtitle"></span>
+    </a> -->
+
+        <p style="color: white; margin-top: 45px; display: inline-block; margin-right: auto; margin-left: auto;">
+          EMDRMeeting 2020@ All rights reserved
+        </p>
+  </footer>
+</body>
+</html>

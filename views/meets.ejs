@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/stylez.css" type="text/css">
+  <style>
+
+    .video {
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      width:100px;
+      margin: 1em;
+      box-sizing: border-box;
+      border-radius: 2px;
+      padding: 0.5em;
+      box-shadow: rgba(150, 180, 180, 0.2) 10px 12px 12px;
+    }
+    .video video {width:105%;}
+    .videopanel{display: inline-block;width: 35%;}
+  </style>
+</head>
+<header>
+    <a id="btnhover" class="primary-btn" style="background-color: #100028; border-color: #100028; float: right;" href="/users/log_out"> Exit </a>
+    <div class="videopanel" id="videos">
+      <div><span class="localname"></span><br><video  id="localVideo" autoplay muted></video>
+      <br>
+      <button class="primary-btn" style="background-color: #100028; border-style: none;" onclick="switchSource(false)">Camera</button> <button class="primary-btn" style="background-color: #100028; border-style: none;" onclick="switchSource(true)">Screen</button>
+    </div>
+      <div class="video"><span class="remote_name"></span><br><video  id="remoteVideo" autoplay></video></div>
+    </div>
+
+</header>
+
+<body style="background-color: #100028;">
+
+  <script type="text/javascript">
+    var video = document.querySelector("#videoElement");
+
+  if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+  .then(function (stream) {
+    video.srcObject = stream;
+  })
+  .catch(function (err0r) {
+    console.log("Something went wrong!");
+  });
+  }
+  </script>
+  <script type="text/javascript">
+    function stop(e) {
+  var stream = video.srcObject;
+  var tracks = stream.getTracks();
+
+  for (var i = 0; i < tracks.length; i++) {
+  var track = tracks[i];
+  track.stop();
+  }
+
+  video.srcObject = null;
+  }
+  </script>
+
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+<script>
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyCZFlnGZRszut4nAb798q4aMoAEyBjXYpk",
+          authDomain: "edmr-246ee.firebaseapp.com",
+          databaseURL: "https://edmr-246ee-default-rtdb.firebaseio.com",
+          projectId: "edmr-246ee",
+          storageBucket: "edmr-246ee.appspot.com",
+          messagingSenderId: "716372616181",
+          appId: "1:716372616181:web:19d7c53eeda6e2974b76bc",
+          measurementId: "G-4J56P8E7LX"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var senderId=localStorage.getItem("senderId3");
+        if(senderId===null) {senderId="Welcome"; localStorage.setItem("senderId3",senderId);}
+
+        document.querySelectorAll(".localname").forEach(x=>x.textContent=senderId);
+
+        if (!location.hash) {            location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);        }
+        const roomHash = location.hash.substring(1);
+
+        var database = firebase.database().ref('/'+roomHash);
+
+        const configuration = {
+            iceServers: [{
+                urls: 'stun:stun.l.google.com:19302'
+            }]
+        };
+
+        function onSuccess() {};
+        function onError(error) {console.error(error); alert(JSON.stringify(error))};
+
+        function sendMessage(message) {
+            let x={ senderId: senderId, ...message };
+            var msg = database.push(JSON.stringify(x));
+            msg.remove();
+        }
+
+        database.on('child_added', function(_data){
+            var data=JSON.parse(_data.val());
+
+            if(data.senderId === senderId ) return;
+
+            if(data.joined) {
+                document.querySelectorAll(".remote_name").forEach(x=>x.textContent=data.senderId);
+                startCall();
+                return;
+            } //start calling
+
+
+            if (data.sdp) {
+              pc.setRemoteDescription(new RTCSessionDescription(data.sdp), () => {
+                  // When receiving an offer lets answer it
+                  if (pc.remoteDescription.type === 'offer') {
+                    document.querySelectorAll(".remote_name").forEach(x=>x.textContent=data.senderId);
+                    pc.createAnswer().then((desc)=>{pc.setLocalDescription(desc,() => sendMessage({'sdp': pc.localDescription}), onError)}).catch(onError);
+                    pc.answered=true;
+                  }
+              }, onError);
+            } else if (data.candidate) {
+              // Add the new ICE candidate to our connections remote description
+              pc.addIceCandidate(
+                  new RTCIceCandidate(data.candidate), onSuccess, onError
+              );
+            }
+        });
+
+        var pc;
+        function setupPC(){
+            pc=new RTCPeerConnection(configuration);
+            // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
+            // message to the other peer through the signaling server
+            pc.onicecandidate = event => {if (event.candidate) sendMessage({'candidate': event.candidate});};
+            // When a remote stream arrives display it in the #remoteVideo element
+            pc.ontrack = event => {remoteVideo.srcObject = event.streams[0];};
+            // Add your stream to be sent to the conneting peer
+            localVideo.srcObject.getTracks().forEach(track => pc.addTrack(track, localVideo.srcObject));
+        }
+
+        switchSource(false);
+
+        function startCall(){
+            if(pc.answered===true){ //we need new pc
+                setupPC();
+            }
+            pc.createOffer().then((desc)=>{pc.setLocalDescription(desc,() => sendMessage({'sdp': pc.localDescription}), onError)}).catch(onError);
+        }
+
+        function switchSource(isScreen){
+          if(isScreen)
+            navigator.mediaDevices.getDisplayMedia({
+                audio: true,
+                video: true,
+            }).then(stream => {
+                // Display your local video in #localVideo element
+                localVideo.srcObject = stream;
+                sendMessage({'joined':true});
+                setupPC();
+
+            }, onError);
+          else
+            navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: true,
+            }).then(stream => {
+                // Display your local video in #localVideo element
+                localVideo.srcObject = stream;
+                sendMessage({'joined':true});
+                setupPC();
+
+            }, onError);
+
+        }
+  </script>
+  <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/mixitup.min.js"></script>
+    <script src="/js/masonry.pkgd.min.js"></script>
+    <script src="/js/jquery.slicknav.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

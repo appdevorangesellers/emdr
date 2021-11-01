@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="./css/project.css" />
+  </head>
+
+  <body>
+    <div class="container"><header>
+        <h1>Chat App</h1>
+        <a href="/">Home</a> <a href="/about.html">About Author</a> <a href="/project.html">About project</a></header><hr />
+        <div class="container SingleBlog_center__2vR6X">
+        <h2>Building a multiroom chat application in Node&nbsp;JS</h2>
+        <div class="SingleBlog_avatar__1PqrR"><a href="https://medium.com/@mehulkothari05?source=rss-545b071425ad------2" target="_blank" rel="noopener noreferrer"><img src="https://cdn-images-1.medium.com/fit/c/150/150/2*RNc3-QOEIAC_clkE00RHZQ.jpeg" alt="profile" width="75" height="75" /></a>
+        <p>Mehul Kothari</p>
+        <p>2020-08-12 04:32:09</p>
+        </div>
+        <div class="SingleBlog_content__1TAIF">
+      
+      
+      
+        <p><strong>Github:<a href="https://github.com/mehulk05/Chat-app-using-Nodejs" target="_blank" rel="nofollow noopener" data-href="https://github.com/mehulk05/Chat-app-using-Nodejs"><strong>https://github.com/mehulk05/Chat-app-using-Nodejs </strong></a></strong></p>
+        <p><strong>Live Url:<a href="https://chatapp-using-node.herokuapp.com/" target="_blank" rel="nofollow noopener" data-href="https://chatapp-using-node.herokuapp.com/"><strong>https://chatapp-using-node.herokuapp.com/</strong> </a></strong></p>
+        <p>In this tutorial, we will use the Node.js platform to build a <strong>real-time chat application</strong> that sends and shows messages to a recipient instantly without any page refresh. Also, we have some validations like if the username is taken then we will have to choose some other username. If two users are in the same room then only they can see the message of each other</p>
+        <figure><img src="https://cdn-images-1.medium.com/max/800/1*uMV6Bj5Sf92LPG3ZKQuHSQ.gif" alt="" data-image-id="1*uMV6Bj5Sf92LPG3ZKQuHSQ.gif" data-width="640" data-height="360" />
+        <figcaption>Live Demo</figcaption>
+        </figure>
+        <p>Before we start, let&rsquo;s have a quick look at the prerequisite</p>
+        <h4>Prerequisite:</h4>
+        <ul>
+        <li>Basics of Node.js</li>
+        <li>Good understanding of Javascript</li>
+        <li>Basics of Jquery</li>
+        </ul>
+        <h3>Node.js</h3>
+        <p><a href="https://en.wikipedia.org/wiki/Node.js" target="_blank" rel="noopener" data-href="https://en.wikipedia.org/wiki/Node.js">Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside the browser. The most important advantage of using Node is that we can use JavaScript as both a front-end and back-end language.</a></p>
+        <p>As we know, JavaScript was used primarily for client-side scripting, in which scripts were embedded in a webpage&rsquo;s HTML and run client-side by a JavaScript engine in the user&rsquo;s web browser.</p>
+        <p>Node.js lets developers use JavaScript to write Command Line tools and for server-side scripting &mdash; running scripts server-side to produce dynamic web page content before the page is sent to the user&rsquo;s web browser.</p>
+        <h4>Getting Started</h4>
+        <p>Create a directory for the application, open the directory with your favorite editor(I personally prefer VSCode):</p>
+        <pre><code>mkdir chatApplication &amp;&amp; cd client</code></pre>
+        <p>Next, let&rsquo;s initialize the directory as a Nodejs application.</p>
+        <pre><code>npm init -y</code></pre>
+        <h4>Folder Structure</h4>
+        <figure><img src="https://cdn-images-1.medium.com/max/800/1*psq9GlRRXVT0oPShTRjDbA.png" alt="" data-image-id="1*psq9GlRRXVT0oPShTRjDbA.png" data-width="364" data-height="385" />
+        <figcaption>Folder Structure for Our&nbsp;App</figcaption>
+        </figure>
+        <h4>Chat Application Architecture</h4>
+        <p>Chats architectures are commonly thought based on a server-side application that will support the requests coming from the client (in this case, some JavaScript/Ajax) and deal with the business logic along with database storing, event processing, queues, etc</p>
+        <p>Since not all the versions of all browsers (the old ones) support WebSockets, <strong>Node.js</strong> created a module which is used for all transport protocol. So in this article, we will create a project to get to know the basics of Socket.IO and what it can offer us, without the use of a database, Ajax, or another back-end language&hellip; only JavaScript, Node.js, and jQuery.</p>
+        <h4>About Socket.IO</h4>
+        <p><em>Socket.IO enables real-time, bidirectional, and event-based communication.<br /><em>It works on every platform, browser, or device, focusing equally on reliability and speed.</em></em></p>
+        <h4>Building the Server-side</h4>
+        <p>To install socket.io:</p>
+        <pre><code>npm install -s socket.io</code></pre>
+        <p>we also need an HTTP package for Socket.io to work:</p>
+        <pre><code>npm install -s http</code></pre>
+        <p>Add the following code to <strong>server.js:</strong></p>
+        <pre><code>var http = require(&lsquo;http&rsquo;).Server(app);<br />var io = require(&lsquo;socket.io&rsquo;)(http);</code></pre>
+        <p>And we can create a connection:</p>
+        <pre><code>io.on(&lsquo;connection&rsquo;, () =&gt;{<br /> console.log(&lsquo;a user is connected&rsquo;)<br />})</code></pre>
+        <p>In the <strong>index.html </strong>add the following tag:</p>
+        <pre><code>&lt;script src=&rdquo;/socket.io/socket.io.js&rdquo;&gt;&lt;/script&gt;</code></pre>
+        <h4>Complete index.js</h4>
+        <pre>const path = require('path')<br />const http = require('http')<br />const express = require('express')<br />const socketio = require('socket.io')<br />const { generatemsg, generateLocation } = require('./utils/messages')
+                       
+        const { addUser, removeUser, getUser, getUserInRoom } = require('./utils/users')
+                       const app = express()<br />const server = http.createServer(app)<br />const io = socketio(server)
+                         const PORT = process.env.PORT || 3000
+                       const publicdir = path.join(__dirname, '../public')
+                       app.use(express.static(publicdir))
+                       //connection by server
+                       io.on("connection", (socket) =&gt; {<br /> console.log("new connection")
+                        socket.on("join", ({ username, room }, cb) =&gt; {
+                       
+        const { error, user } = addUser({ id: socket.id, username, room })
+                       if (error) {<br /> return cb(error)<br /> }<br /> socket.join(user.room)<br /> socket.emit("message", generatemsg("Admin ,Welcome"))<br /> socket.broadcast.to(user.room).emit("message", generatemsg(`Admin ${user.username} has joined!`))
+                       io.to(user.room).emit("roomData", {<br /> room: user.room,<br /> users: getUserInRoom(user.room)<br /> })<br /> cb()<br /> })
+                       socket.on("sendMessage", (msg, cb) =&gt; {<br /> const user = getUser(socket.id)<br /> io.to(user.room).emit("message", generatemsg(user.username, msg))<br /> cb()<br /> })
+                       socket.on("sendLocation", (location, cb) =&gt; {<br /> const user = getUser(socket.id)<br /> console.log(user)<br /> io.to(user.room).emit("locationurl", generateLocation(user.username, `<a href="https://www.google.com/maps?q=$%7Blocation.latitude%7D,$%7Blocation.longitude%7D&#96;" target="_blank" rel="nofollow noopener noopener" data-href="https://www.google.com/maps?q=${location.latitude},${location.longitude}&#96;">https://www.google.com/maps?q=${location.latitude},${location.longitude}`</a>))<br /> cb()<br /> })
+                       //connection drop<br />socket.on("disconnect", () =&gt; {<br /> const user = removeUser(socket.id)<br /> console.log(user)<br /> if (user) {<br /> io.to(user.room).emit("message", generatemsg(`Admin ${user.username} A user has left`))
+                       io.to(user.room).emit("roomData", {<br /> room: user.room,<br /> users: getUserInRoom(user.room)<br /> })<br /> }
+                       })
+                       })<br />server.listen(PORT, () =&gt; {<br /> console.log("server s up" + PORT)<br />})</pre>
+        <p>So skipping the import statement and jumping right to the socket part lets understand basic terminology</p>
+        <ul>
+        <li><strong>io.on(&ldquo;connection&rdquo;)</strong>: Here is where we set up Socket.IO. It is listening for a &lsquo;connection&rsquo; event and will run the provided function anytime this happens.</li>
+        <li><strong>io.emit(&ldquo;event_name&rdquo;):</strong> to send a message to all the connected clients. This code will notify when an event occurs to the server.</li>
+        <li><strong>io.to(&ldquo;socketId&rdquo;): </strong>when we want to emit to only a particular client in that case we can use io.to</li>
+        <li><strong>socket.on(&ldquo;disconnect&rdquo;)</strong>: When the connection is dropped the disconnect event will fire.</li>
+        </ul>
+        <p>Summing up, we are creating a connection and then we are executing code for two events if occur from the client-side i.e <strong>sendMessage </strong>and <strong>sendLocation.</strong></p>
+        <h4>HTML page</h4>
+        <pre>&lt;!DOCTYPE html&gt;<br />&lt;html&gt;<br />&lt;head&gt;<br /> &lt;title&gt;ChatJS&lt;/title&gt;<br /> &lt;link rel="stylesheet" type="text/css" href="/css/style.css" /&gt;<br />&lt;/head&gt;<br />&lt;body&gt;
+                       &lt;div id="<code>message</code>"&gt;&lt;/div&gt;<br /> &lt;form id="chat"&gt;<br /> &lt;input type="text" id="msg_text" name="msg_text" /&gt;<br /> &lt;input type="submit" value="Send!" /&gt; <br /> &lt;/form&gt;
+                       &lt;button id="getLocation"&gt;Send location&lt;/button&gt;
+                       &lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;<br />&lt;script src="/js/chat.js"&gt;&lt;/script&gt;
+                       &lt;/body&gt;<br />&lt;/html&gt;</pre>
+        <p>Our index, for now, will only deal with a div called <code>message</code> that is where all the messages exchanged in the chat will be arranged. Then, we have soon after a form with a text box and the button of message sending. A very simple chat structure so far. So using our client-side js now we will send our current location and message</p>
+        <h4><strong>Client-Side Js:</strong></h4>
+        <pre>const socket = io()<br />const $msgForm = document.querySelector("#chat")<br />const $geoLocationButton = document.querySelector("#getLocation")
+                       $msgForm.addEventListener("submit", (e) =&gt; {<br /> e.preventDefault()
+                       let msg = document.querySelector("input").value<br />socket.emit("sendMessage", msg, (error) =&gt; {<br /><br /> if (error) {<br /> return console.log(error)<br /> }
+                       console.log(msg ,'Message delivered!')<br /> })<br />})
+                       // sending current location
+                       $geoLocationButton.addEventListener("click", () =&gt; {<br /> if (!navigator.geolocation) {<br /> return alert("no browser supoport")<br /> }
+                       navigator.geolocation.getCurrentPosition((position) =&gt; {
+                       socket.emit("sendLocation", {<br /> latitude: position.coords.latitude,<br /> longitude: position.coords.longitude,<br /> }, (location) =&gt; {<br /> console.log(location, "location shared", position)<br /> })
+                       })<br />})</pre>
+        <p>So here we have written client-side js, as we can see right now our UI is not there which I am skipping and provide the Github repo. So when a particular event will occur we send this message to the server-side and we will display this message in the console.</p>
+        <h4>Demo:</h4>
+        <figure><img src="https://cdn-images-1.medium.com/max/800/1*OLxtIBn5J6BWs8mELWroCA.png" alt="" data-image-id="1*OLxtIBn5J6BWs8mELWroCA.png" data-width="795" data-height="609" /></figure>
+        <figure><img src="https://cdn-images-1.medium.com/max/800/1*9R9d__1eDHz7jNRlwbjs8g.png" alt="" data-image-id="1*9R9d__1eDHz7jNRlwbjs8g.png" data-width="809" data-height="645" /></figure>
+        <h3>Conclusion:</h3>
+        <p>So that&rsquo;s the end of our app. As you can see is pretty simple and it doesn&rsquo;t require tons of code as I thought before building it.</p>
+        <p>The power of Socket.IO extends to more solutions that previously relied on back-end pages. Now, the inbound/outbound server response time can rely on the WebSocket protocol for more agile information exchange, enabling systems that track monitoring results or even setting real-time pricing for users.</p>
+        <p>You can find the full source code <a href="https://github.com/mehulk05/Chat-app-using-Nodejs" target="_blank" rel="noopener" data-href="https://github.com/mehulk05/Chat-app-using-Nodejs">here.<br />Feel free to report issues and bugs and improve this code, thus making it better. </a></p>
+        </div>
+        </div>
+        </div>
+  </body>
+</html>

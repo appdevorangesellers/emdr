@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EMDR Payment Invoice</title>
+    <link rel="stylesheet" href="/css/paymentstyle.css" />
+  </head>
+  <style>
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    a {
+      color: #5D6975;
+      text-decoration: underline;
+    }
+
+    body {
+      position: relative;
+      width: 21cm;
+      height: 29.7cm;
+      margin: 0 auto;
+      color: #001028;
+      background: #FFFFFF;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-family: Arial;
+    }
+
+    header {
+      padding: 10px 0;
+      margin-bottom: 30px;
+    }
+
+    #logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    #logo img {
+      width: 90px;
+    }
+
+    h1 {
+      border-top: 1px solid  #5D6975;
+      border-bottom: 1px solid  #5D6975;
+      color: white;
+      font-size: 2.4em;
+      line-height: 1.4em;
+      font-weight: normal;
+      text-align: ;
+      margin: 0 0 20px 0;
+      background-color: #0f325e;
+    }
+
+    #project {
+      float: left;
+    }
+
+    #project span {
+      color: #5D6975;
+      text-align: left;
+      width: 52px;
+      margin-right: 10px;
+      display: flex;
+      font-size: 0.8em;
+    }
+
+    #company {
+      float: right;
+      text-align: right;
+    }
+
+    #project div,
+    #company div {
+      white-space: nowrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      margin-bottom: 20px;
+    }
+
+    table tr:nth-child(2n-1) td {
+      background: #F5F5F5;
+    }
+
+    table th,
+    table td {
+      text-align: center;
+    }
+
+    table th {
+      padding: 5px 20px;
+      color: #5D6975;
+      border-bottom: 1px solid #C1CED9;
+      white-space: nowrap;
+      font-weight: normal;
+    }
+
+    table .service,
+    table .desc {
+      text-align: left;
+    }
+
+    table td {
+      padding: 20px;
+      text-align: right;
+    }
+
+    table td.service,
+    table td.desc {
+      vertical-align: top;
+    }
+
+    table td.unit,
+    table td.qty,
+    table td.total {
+      font-size: 1.2em;
+    }
+
+    table td.grand {
+      border-top: 1px solid #5D6975;;
+    }
+
+    #notices .notice {
+      color: #5D6975;
+      font-size: 1.2em;
+    }
+
+    footer {
+      color: #5D6975;
+      width: 100%;
+      height: 450px;
+      position: absolute;
+      bottom: 0;
+      border-top: 1px solid #C1CED9;
+      padding: 8px 0;
+      text-align: center;
+    }
+
+    .watermark {
+  opacity: 0.2;
+  font-size: 72px;
+  color: 'black';
+  background: '#ccc';
+  position: absolute;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  margin-top: 20px;
+   right: 0px;
+
+   display:block;
+    -webkit-transform: rotate(320deg);
+    -moz-transform: rotate(140deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
+}
+
+  </style>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img style="width: 400px;" src="https://app.emdrmeeting.com/images/logo.png" />
+      <h1>EMDR PAYMENT INVOICE</h1>
+      <div id="company" class="clearfix">
+        <div>EMDR Meeting</div>
+        <div>Address: Arskandreef, Utrecht</div>
+        <div>The Netherlands</div>
+        <div><a href="support@emdrmeetign.com">support@emdrmeeting.com</a></div>
+      </div>
+      <br />
+      <div style="text-align: left;">
+        <div><span><strong>DOCUMENT ID: </strong></span> <%= doc %> </div>
+        <div><span><strong> INVOICE ID: </strong></span> <%= invoice %> </div>
+        <div><span><strong>PACKAGE: </strong></span> <%= sub %> </div>
+
+        <div><span><strong> EMAIL: </strong></span> <%= email %> </div>
+        <div><span> <strong> TIME: </strong> </span> <%= dat %> </div>
+
+      </div>
+    </header>
+    <main>
+      <div class="watermark">
+         EMDR Meeting Draft
+       </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">PACKAGE</th>
+            <th class="desc">DESCRIPTION</th>
+            <th>PRICE</th>
+            <th>QTY</th>
+            <th>TOTAL</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="service">Subscription</td>
+            <td class="desc"><%= sub %></td>
+
+          </tr>
+
+          <tr>
+            <td colspan="4">SUBTOTAL</td>
+            <td class="total"><%= sub %></td>
+          </tr>
+          <tr>
+            <td colspan="4">TAX 25%</td>
+            <td class="total">$16.50</td>
+          </tr>
+          <tr>
+            <td colspan="4" class="grand total">GRAND TOTAL</td>
+            <td class="grand total">$16.50</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="notices">
+        <div style="color: black;">NOTICE:</div>
+        <div class="notice">Invoice was created on a computer and is not valid without the signature and seal..</div>
+        <div class="notice">We will send you the signed invoice shortly.</div>
+        <div class="notice">If you still haven't received the signed email then contact us here - <a href="support@emdrmeetign.com">support@emdrmeeting.com</a> </div>
+      </div>
+    </main>
+    <footer>
+      Emdrmeeting.com@2020
+    </footer>
+  </body>
+</html>

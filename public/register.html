@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="description" content="Videograph Template">
+    <meta name="keywords" content="Videograph, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EMDR Meeting App</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/stylez.css" type="text/css">
+</head>
+<style>
+
+.login-dark {
+height:900px;
+background:#475d62 url(../../images/snow.jpg);
+background-size:cover;
+position:relative;
+}
+
+.login-dark form {
+max-width:500px;
+width:90%;
+background-color:#1e2833;
+padding:40px;
+border-radius:4px;
+transform:translate(-50%, -50%);
+position:absolute;
+top:50%;
+left:50%;
+color:#fff;
+box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+}
+
+.login-dark .illustration {
+text-align:center;
+padding:15px 0 20px;
+font-size:100px;
+color:#2980ef;
+}
+
+.login-dark form .form-control {
+background:none;
+border:none;
+border-bottom:1px solid #434a52;
+border-radius:0;
+box-shadow:none;
+outline:none;
+color:inherit;
+}
+
+.login-dark form .btn-primary {
+background:#214a80;
+border:none;
+border-radius:4px;
+padding:11px;
+box-shadow:none;
+margin-top:26px;
+text-shadow:none;
+outline:none;
+}
+
+.login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
+background:#214a80;
+outline:none;
+}
+
+.login-dark form .forgot {
+display:block;
+text-align:center;
+font-size:12px;
+color:#6f7a85;
+opacity:0.9;
+text-decoration:none;
+}
+
+.login-dark form .forgot:hover, .login-dark form .forgot:active {
+opacity:1;
+text-decoration:none;
+}
+
+.login-dark form .btn-primary:active {
+transform:translateY(1px);
+}
+
+.g-recaptcha {
+    margin-left: 60px;
+    margin-top: 15px;
+}
+
+#message {
+display:none;
+background: white;
+color: #000;
+
+}
+
+#message p {
+padding: 10px 35px;
+font-size: 10px;
+margin:0;
+display:inline;
+float:left
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+color: green;
+}
+
+.valid:before {
+position: relative;
+left: -35px;
+content: '\2714';
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+color: red;
+}
+
+.invalid:before {
+position: relative;
+left: -35px;
+content: '\2716';
+}
+
+
+html, body {
+
+    overflow-x: hidden;
+}
+
+
+
+</style>
+
+<header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="https://apps.emdrmeeting.com"><img src="/images/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header__nav__option">
+
+                        <div class="header__nav__social">
+                            <!-- <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a> -->
+                            <a href="https://apps.emdrmeeting.com/ticketlogin"> &nbsp; IT Support </a>
+                            <!-- <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+
+    <body>
+      <div id="preloder">
+          <div class="loader"></div>
+      </div>
+        <div class="login-dark">
+            <form action="/users/register" method="post">
+                <h2 class="sr-only">Login Form</h2>
+                <div class="illustration"><i class="icon ion-android-person"></i></div>
+                <div class="form-group"><input class="form-control" type="emmil" id="user_email" name="eml" placeholder="Email"></div>
+                <div class="form-group"><input class="form-control" type="password" id="user_password" name="pwd" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></div>
+                <div class="form-group"><input id="privacypolicy" type="checkbox" name="user[confirm_tos_and_privacy]" value="false">
+
+                  Yes, I agree with the <a href="https://emdrmeeting.com/privacybeleid/" target="_blank">privacy policy</a> and the <a href="https://emdrmeeting.com/nl/algemene-voorwaarden/" target="_blank"
+                    class="font-bold italic">Terms of Service</a>.
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LdDf5ocAAAAADH8IxY0vVRcuAqlNZYKL8W8Po54"></div>
+                <div class="form-group"><button id="lock" class="btn btn-primary btn-block" disabled="disabled" type="submit">Register</button></div>
+                <div class="form-group" style="font-size: 9px;" id="message">
+                  <h6 style="text-align: center;">Password must contain the following:</h3>
+                  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                  <p id="capital" class="invalid">A <b>uppercase</b> letter</p>
+                  <p id="number" class="invalid">A <b>number</b></p>
+                  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                </div>
+        </div>
+
+
+
+
+
+
+      </form>
+      <footer class="footer">
+
+                <div class="footer__copyright">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            <p class="footer__copyright__text">Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                All rights reserved | emdrmeeting@2020 by <a href="https://apps.emdrmeeting.com" target="_blank">apps.emdrmeeting.com</a>
+                            </p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                    </div>
+                </div>
+
+        </footer>
+        <script>
+
+        document.addEventListener('contextmenu', function(e){
+          e.preventDefault();
+        });
+
+        </script>
+        <script>
+  var myInput = document.getElementById("user_password");
+  var letter = document.getElementById("letter");
+  var capital = document.getElementById("capital");
+  var number = document.getElementById("number");
+  var length = document.getElementById("length");
+
+  // When the user clicks on the password field, show the message box
+  myInput.onfocus = function() {
+    document.getElementById("message").style.display = "block";
+  }
+
+  // When the user clicks outside of the password field, hide the message box
+  myInput.onblur = function() {
+    document.getElementById("message").style.display = "none";
+  }
+
+  // When the user starts to type something inside the password field
+  myInput.onkeyup = function() {
+    // Validate lowercase letters
+    var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {
+      letter.classList.remove("invalid");
+      letter.classList.add("valid");
+    } else {
+      letter.classList.remove("valid");
+      letter.classList.add("invalid");
+  }
+
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {
+      capital.classList.remove("invalid");
+      capital.classList.add("valid");
+    } else {
+      capital.classList.remove("valid");
+      capital.classList.add("invalid");
+    }
+
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {
+      number.classList.remove("invalid");
+      number.classList.add("valid");
+    } else {
+      number.classList.remove("valid");
+      number.classList.add("invalid");
+    }
+
+    // Validate length
+    if(myInput.value.length >= 8) {
+      length.classList.remove("invalid");
+      length.classList.add("valid");
+    } else {
+      length.classList.remove("valid");
+      length.classList.add("invalid");
+    }
+  }
+  </script>
+
+        <script>
+        var checker = document.getElementById('privacypolicy');
+        var sendbtn = document.getElementById('lock');
+        checker.onchange = function(){
+        if(this.checked){
+          sendbtn.disabled = false;
+        } else {
+          sendbtn.disabled = true;
+        }
+
+    }
+  </script>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+
+
+    <script type="text/javascript">
+    document.onkeydown = function(e) {
+  if(event.keyCode == 123) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+     return false;
+  }
+  }
+    </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/jquery-3.3.1.min.js"></script>
+      <script src="/js/bootstrap.min.js"></script>
+      <script src="/js/jquery.magnific-popup.min.js"></script>
+      <script src="/js/mixitup.min.js"></script>
+      <script src="/js/masonry.pkgd.min.js"></script>
+      <script src="/js/jquery.slicknav.js"></script>
+      <script src="/js/owl.carousel.min.js"></script>
+      <script src="/js/main.js"></script>
+
+
+</body>
+
+</html>

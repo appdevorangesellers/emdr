@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title EMDR demo></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/elegant-icons.css" type="text/css">
+  <link rel="stylesheet" href="/css/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css">
+  <link rel="stylesheet" href="/css/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/stylez.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<header>
+
+</header>
+<style media="screen">
+  .backcolor {
+    padding: 10px;
+    border-style: solid;
+    border-width: 1.8px;
+    border-radius: 5px;
+    border-color: white;
+  }
+
+  #sizeHover:hover{
+    background-color: darkBlue !important;
+  }
+
+  .backcolor:hover {
+    opacity: 0.5;
+  }
+
+  .base-timer {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  color: orange;
+}
+
+.base-timer__path-remaining.orange {
+  color: darkBlue;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: orange;
+}
+
+#btnhover:hover{
+  background-color: darkBlue;
+}
+
+header .logo {
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+  height: 100px;
+  padding: 5px;
+}
+
+header .logo img {
+  height: 100%;
+}
+
+
+header .subtitle {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1.5em;
+}
+
+.h-header {
+  height: 124px
+}
+.w-full {
+  width: 100%
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+#quest{
+  position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -50px;
+      margin-left: -150px;
+      width: 600px;
+      height: 400px;
+      font-size: 35px;
+      color: purple;
+}
+
+#whole{
+  background-image: url("/images/hero/noon.jpg");
+  background-size: cover;
+}
+
+#meet{
+  background-image: url("/images/hero/si-3.png");
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: center;
+  padding: 35px;
+}
+
+#newz {
+  width: 100%;
+  max-height: 70vh;
+}
+
+
+</style>
+<!-- <header style="margin-top:-10px;" class="h-header w-full flex justify-between bg-white shadow-lg">
+  <a href="/" class="block logo mx-8 ">
+    <img src="https://app.emdrmeeting.com/images/logo.png" alt="YouSurge logo" style="width: 300px; height: 60px; margin-top: 25px;"><span class="subtitle"></span>
+  </a>
+</header> -->
+<!-- <header>
+    <div id="app"></div>
+</header> -->
+<header>
+
+   <a id="meet" style="float: right; margin-top: 30px;" href="/meets" class="primary-btn"></a>
+
+
+</header>
+<body style="background-color: #100028;" id="body" class="body" onload="loader()">
+
+  <div id="preloder">
+      <div class="loader"></div>
+  </div>
+
+  <div id="quest">  </div>
+  <div id="textrndm"></div>
+  <div id="movingDiv" class="movingDiv">
+
+  </div>
+  <img id="output" />
+
+
+  <table id="whole" style="display: flex; background-color: #100028; max-width: 430px; border-radius: 2.50rem;">
+    <tr>
+      <td>
+        <div id="app"></div>
+      </td>
+      <td>
+        <button id="sizeHover" style="padding:10px; background-color: orange; color: white;" class="grey" onclick="showHide()"><i class="fa fa-eye"> Show </i></button>
+      </td>
+      <td>
+        <button id="sizeHover" style="padding:10px; background-color: orange; color: white;" class="grey" onclick="showHide()"><i class="fa fa-eye"> Hide </i></button>
+      </td>
+
+    &nbsp;
+    &nbsp;
+      <td>
+            <button id="sizeHover" style="padding:10px; background-color: orange; color: white; " class="grey" onclick="stopStart(); startTimer();"><i class="fa fa-play"> Play </i></button>
+      </td>
+      <td>
+            <button id="sizeHover" style="padding:10px; background-color: orange; color: white;" class="grey" onclick="stopStart(); stopTimer();"><i class="fa fa-pause"></i> Pause </button>
+      </td>
+
+
+
+
+    </tr>
+
+
+  </table>
+
+  <div style="max-width: 1020px;" class="inp" id="settings">
+    <div id="whole" style="background-color: #100028; color: white; border-radius: 2.50rem; padding: 15px;" class="set-wraper">
+
+      <div class="inpItem"><i class="fa fa-tachometer"></i><span> Speed: </span>
+
+        <span contenteditable="True" style="display: inline-block ; width:100px; border: 1px; margin-top:1%;" id="changeVal">4</span>
+
+      </div>
+      <br />
+      <div class="inpItem"><i class="fa fa-cubes"></i><span>Sets:</span><span contenteditable="True" style="display: inline-block ; width:100px; border: 1px; margin-top:1%;" id="changeSet">10</span>
+        <button class="primary-btn" id="setButton" onclick="setSetter()">Manual</button>
+
+      </div>
+      <br />
+      <div class="inpItem"><i class="fa fa-clock-o"></i><span> Time </span><span contenteditable="True" style="display: inline-block ; width:100px; border: 1px; " id="changeTime">180</span>
+        <button class="primary-btn" id="timeButton" onclick="timeSetter()">Manual</button>
+
+      </div>
+      <br />
+
+      <div>Color:
+      <button class="backcolor" style="background-color: orange;" onclick="buttonAction('orange');"></button>
+      <button class="backcolor" style="background-color: red;" onclick="buttonAction('red');"></button>
+      <button class="backcolor" style="background-color: lawngreen;" onclick="buttonAction('lawngreen');"></button>
+      <button class="backcolor" style="background-color: aqua;" onclick="buttonAction('aqua');"></button>
+      <button class="backcolor" style="background-color: blueviolet;" onclick="buttonAction('blueviolet');"></button>
+      <button class="backcolor" style="background-color: violet;" onclick="buttonAction('violet');"></button>
+      <button class="backcolor" style="background-color: black;" onclick="buttonAction('black');"></button>
+      <button class="backcolor" style="background-color: #37bdb8;" onclick="buttonAction('#37bdb8');"></button>
+      <button class="backcolor" style="background-color: #864df5;" onclick="buttonAction('#864df5');"></button>
+      <button class="backcolor" style="background-color: #ff56f9;" onclick="buttonAction('#ff56f9');"></button>
+      <br />
+      <br />
+      </div>
+      <div>Background:
+      <button class="backcolor" style="background-color: #100028; color:whitesmoke" onclick="buttonBakground('#100028');"></button>
+      <button class="backcolor" style="background-color: black; color:whitesmoke" onclick="buttonBakground('black');"></button>
+      <button class="backcolor" style="background-color: grey; color:black;" onclick="buttonBakground('grey');"></button>
+      <button class="backcolor" style="background-color: white; color:black;" onclick="buttonBakground('white');"></button>
+      <button class="backcolor" style="background-color: red;" onclick="buttonBakground('red');"></button>
+      <button class="backcolor" style="background-color: orange;" onclick="buttonBakground('orange');"></button>
+      <button class="backcolor" style="background-color: lawngreen;" onclick="buttonBakground('lawngreen');"></button>
+      <button class="backcolor" style="background-color: aqua;" onclick="buttonBakground('aqua');"></button>
+      <button class="backcolor" style="background-color: blueviolet;" onclick="buttonBakground('blueviolet');"></button>
+      <button class="backcolor" style="background-color: violet;" onclick="buttonBakground('violet');"></button>
+      <!-- <input class="backcolor" style='background: no-repeat center/70% url("/images/image.svg");' phx-click="toggle_random_background_image"></button> -->
+      <p><input type="file"  accept="image/*" name="image" id="file" onchange="previewFile(this);" style="display: none;"></p>
+      <p><label class="primary-btn" for="file" style="cursor: pointer;">Upload Image</label></p>
+      </div>
+      <div>Size:
+      <button id="sizeHover" style="padding: 12px; border-radius: 2.50rem; background-color: white; color:black;" onclick="ballSize(0);"></button>
+      <button id="sizeHover" style="padding: 17px; border-radius: 2.50rem; background-color: white; color:black;" onclick="ballSize(1);"></button>
+      <button id="sizeHover" style="padding: 22px; border-radius: 2.50rem; background-color: white; color:black;" onclick="ballSize(2);"></button>
+      <br />
+      <br />
+      </div>
+      <div>Direction:
+      <button class="backcolor" style='background: no-repeat center/70% url("/images/left-right-white-907674e9185a08b34f2cbd15549fe2e7.png"); background-color: orange; color:black;' onclick="direction(0);"></button>
+      <button class="backcolor" style='background: no-repeat center/70% url("/images/top-left-diagonal-blue-b275d58826ba3a0146530cf14d3cc3e1.png"); background-color: white; color:black;' onclick="direction(1);"></button>
+      <button class="backcolor" style='background: no-repeat center/70% url("/images/bottom-left-diagonal-blue-9eb3e2e5301ad4c76bb3c2cfb61e4d30.png"); background-color: white; color:black;' onclick="direction(2);"></button>
+      <button id="fulls" class="backcolor" style='background: no-repeat center/70% url("/images/bottom-left-diagonal-blue-9eb3e2e5301ad4c76bb3c2cfb61e4d30.png"); background-color: white; color:black;"'></button>
+
+      <br />
+      <br />
+      </div>
+      <div>Random Words:
+      <button class="backcolor" style='background: no-repeat center/70% url("/images/left-right-white-907674e9185a08b34f2cbd15549fe2e7.png"); background-color: orange; color:black; text-size: 20px;' onclick="RndText();"></button>
+      <br />
+      <br />
+      </div>
+      <div>Show VOC Question:
+      <button class="backcolor" style='background: no-repeat center/70% url("/images/left-right-white-907674e9185a08b34f2cbd15549fe2e7.png"); background-color: orange; color:black;' onclick="QuestText();"></button>
+      <br />
+      <br />
+      <div>Show SUD Question:
+      <button class="backcolor" style='background: no-repeat center/70% url("/images/left-right-white-907674e9185a08b34f2cbd15549fe2e7.png"); background-color: orange; color:black;' onclick="QuestText();"></button>
+      <br />
+      <br />
+      </div>
+
+      <span>Sound:</span>
+
+      <input id="ad" type="button" value="PLAY" onclick="togglePlay()" style='background: no-repeat center/70% url("/images/image.svg");'>
+      <!-- <audio id="audio" src=""></audio> -->
+      <audio loop id="audio"
+      <source src="/images/hero/sound.mp3" />
+
+
+
+      </audio>
+      <audio id="audio"
+
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" />
+
+
+      </audio>
+
+    </div>
+
+  </div>
+
+  </div>
+
+<script>
+const elem = document.querySelector('#newz');
+
+elem.addEventListener("click", function(e) {
+  toggleFullScreen();
+}, false);
+
+function toggleFullScreen() {
+
+  if (!document.fullscreenElement) {
+    elem.requestFullscreen().catch(err => {
+      alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+</script>
+
+
+
+  <script>
+  function previewFile(fileInput) {
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+
+    reader.addEventListener("load", function() {
+      setBackground(reader.result);
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+  function setBackground(imageURL){
+      document.body.style.backgroundImage = "url(" + imageURL + ")";
+      document.body.style.backgroundSize = "100% auto";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundPosition = "center top";
+  }
+</script>
+
+<!-- <script>
+function play() {
+      var audio = document.getElementById("audio");
+      audio.play();
+    }
+
+</script> -->
+
+
+<script type="text/javascript">
+var myAudio = document.getElementById("audio");
+
+function togglePlay() {
+return myAudio.paused ? myAudio.play() : myAudio.pause();
+};
+</script>
+
+
+
+<script type="text/javascript">
+
+  }
+
+</script>
+
+  <script>
+    var obj = document.getElementById("movingDiv");
+    var changeValObj = document.getElementById("changeVal");
+    var changeSetObj = document.getElementById("changeSet");
+    var timeSetObj = document.getElementById("changeTime");
+    var colValObj = document.getElementById("colVal");
+    var backValObj = document.getElementById("backVal");
+    var body = document.getElementById("body");
+    var sh = true;
+    var ss = true;
+    var dirSet = 0;
+    var opp;
+    var change = 2;
+    var j = 0;
+    var globTime = parseFloat(new Date().getTime() / 1000);
+    var setsDisp = true;
+    var timeDisp = true;
+    var windowWidth = window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+
+    var windowHeight = window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
+
+
+      history.pushState(null, null, location.href);
+           window.onpopstate = function () {
+               history.go(1);
+           };
+
+
+  const FULL_DASH_ARRAY = 283;
+  const WARNING_THRESHOLD = 7;
+  const ALERT_THRESHOLD = 3;
+
+  const COLOR_CODES = {
+    info: {
+      color: "green"
+    },
+    warning: {
+      color: "orange",
+      threshold: WARNING_THRESHOLD
+    },
+    alert: {
+      color: "red",
+      threshold: ALERT_THRESHOLD
+    }
+  };
+
+  const TIME_LIMIT = 800;
+  let timePassed = 0;
+  let timeLeft = TIME_LIMIT;
+  let timerInterval = null;
+  let remainingPathColor = COLOR_CODES.info.color;
+
+  document.getElementById("app").innerHTML = `
+  <div class="base-timer">
+    <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g class="base-timer__circle">
+        <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+        <path
+          id="base-timer-path-remaining"
+          stroke-dasharray="283"
+          class="base-timer__path-remaining ${remainingPathColor}"
+          d="
+            M 50, 50
+            m -45, 0
+            a 45,45 0 1,0 90,0
+            a 45,45 0 1,0 -90,0
+          "
+        ></path>
+      </g>
+    </svg>
+    <span id="base-timer-label" class="base-timer__label">${formatTime(
+      timeLeft
+    )}</span>
+  </div>
+  `;
+
+  startTimer();
+
+  function onTimesUp() {
+    clearInterval(timerInterval);
+  }
+
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      timePassed = timePassed += 1;
+      timeLeft = TIME_LIMIT - timePassed;
+      document.getElementById("base-timer-label").innerHTML = formatTime(
+        timeLeft
+      );
+      setCircleDasharray();
+      setRemainingPathColor(timeLeft);
+
+      if (timeLeft === 0) {
+        onTimesUp();
+        window.location.href = "/users/log_out";
+      }
+    }, 1000);
+  }
+
+  function stopTimer(){
+    clearInterval(timerInterval);
+  }
+
+  function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+
+    return `${minutes}:${seconds}`;
+  }
+
+  function setRemainingPathColor(timeLeft) {
+    const { alert, warning, info } = COLOR_CODES;
+    if (timeLeft <= alert.threshold) {
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.remove(warning.color);
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.add(alert.color);
+    } else if (timeLeft <= warning.threshold) {
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.remove(info.color);
+      document
+        .getElementById("base-timer-path-remaining")
+        .classList.add(warning.color);
+    }
+  }
+
+  function calculateTimeFraction() {
+    const rawTimeFraction = timeLeft / TIME_LIMIT;
+    return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+  }
+
+  function setCircleDasharray() {
+    const circleDasharray = `${(
+      calculateTimeFraction() * FULL_DASH_ARRAY
+    ).toFixed(0)} 283`;
+    document
+      .getElementById("base-timer-path-remaining")
+      .setAttribute("stroke-dasharray", circleDasharray);
+  }
+
+
+    var x = windowWidth / 100;
+    var i = parseInt(windowWidth / x);
+    var v = windowWidth / 10;
+    var u = parseInt(windowHeight / v);
+    var w = parseInt(windowHeight / v);
+    var r = parseInt(windowWidth / x);
+
+    var z = parseInt(Math.sqrt(windowWidth ^ 2 + windowHeight ^ 2) / x);
+    var y = parseInt(Math.sqrt(windowWidth ^ 2 + windowHeight ^ 2) / x);
+
+
+    // diag angle calculation
+    var angleRad = Math.atan(windowHeight / windowWidth);
+    var diagAngle = angleRad;
+    var diagLen = Math.sqrt(windowWidth ** 2 + windowHeight ** 2);
+
+    var angleRads = Math.asin(windowHeight / windowWidth);
+    var diagAngles = angleRads;
+    var diagLens = Math.sqrt(windowWidth ** 3 + windowHeight ** 3);
+
+    var textarray = [
+     "hi",
+     "hello",
+     "Ravin",
+     "how r u",
+     "where r u"
+    ];
+
+    function RndText() {
+      var rannum= Math.floor(Math.random()*textarray.length);
+      document.getElementById('quest').innerHTML=textarray[rannum];
+    }
+    // onload = function() { RndText(); }
+
+    var questarray = [
+     "What is your name?",
+     "What is the background screen colour?",
+     "Why do you feel stressed?",
+     "What do you do for living?",
+     "What is your favourite moment in your life?"
+    ];
+
+    function QuestText() {
+     var rantxt= Math.floor(Math.random()*questarray.length);
+     document.getElementById('quest').innerHTML=questarray[rantxt];
+
+   }
+
+
+       function loader() {
+      timeSetObj.style.display = "none";
+      timeSetObj.style.display = "inline";
+      document.getElementById("timeButton").style.backgroundColor = "#100028";
+      document.getElementById("timeButton").style.borderRadius = "25px";
+      document.getElementById("timeButton").style.padding = "10px";
+      document.getElementById("timeButton").innerText = "Manual";
+
+
+      changeSetObj.style.display = "none";
+      changeSetObj.style.display = "inline";
+      document.getElementById("setButton").style.backgroundColor = "#100028";
+      document.getElementById("setButton").style.borderRadius = "25px";
+      document.getElementById("setButton").style.padding = "10px";
+      document.getElementById("setButton").innerText = "Manual";
+    }
+
+    function timeSetter() {
+      timeDisp = !timeDisp;
+      if (timeDisp == true) { //Manual
+        timeSetObj.style.display = "inline";
+        timeSetObj.innerText = "180";
+        document.getElementById("timeButton").style.backgroundColor = "#100028";
+        document.getElementById("timeButton").style.borderRadius = "25px";
+        document.getElementById("timeButton").style.padding = "10px";
+        document.getElementById("timeButton").innerText = "Manual";
+
+
+      } else if (timeDisp == false) { // Auto
+        timeSetObj.style.display = "none";
+        timeSetObj.innerText = "10000000000000000000000000000000000000000000000";
+        document.getElementById("timeButton").style.backgroundColor = "#100028";
+        document.getElementById("timeButton").style.borderRadius = "25px";
+        document.getElementById("timeButton").style.padding = "10px";
+        document.getElementById("timeButton").innerText = "Loop";
+      }
+    }
+
+    function setSetter() {
+      setsDisp = !setsDisp;
+      if (setsDisp == true) {
+        changeSetObj.style.display = "inline";
+        changeSetObj.innerText = "10";
+        document.getElementById("setButton").style.backgroundColor = "#100028";
+        document.getElementById("setButton").style.borderRadius = "25px";
+        document.getElementById("setButton").style.padding = "10px";
+        document.getElementById("setButton").innerText = "Manual";
+
+
+      } else if (setsDisp == false) {
+        changeSetObj.style.display = "none";
+        changeSetObj.innerText = "10000000000000000000000000000000000000000000000";
+        document.getElementById("setButton").style.backgroundColor = "#100028";
+        document.getElementById("setButton").style.borderRadius = "25px";
+        document.getElementById("setButton").style.padding = "10px";
+        document.getElementById("setButton").innerText = "Loop";
+      }
+    }
+
+    function direction(content) {
+      if (content == 0) {
+        dirSet = 0;
+
+      } else if (content == 1) {
+        dirSet = 1;
+
+      } else if (content == 2) {
+        dirSet = 2;
+
+      }
+      else if (content == 3) {
+        dirSet = 3;
+
+      }
+    }
+
+    function showHide() {
+      if (sh == true) {
+        document.getElementById('settings').style.display = 'none';
+        sh = false;
+      } else if (sh == false) {
+        document.getElementById('settings').style.display = '';
+        sh = true;
+        j = 0;
+      }
+    }
+
+
+    function stopStart() {
+      j = 0;
+      if (ss == true) {
+        ss = false;
+        //showHide();
+      } else if (ss == false) { // start
+        ss = true;
+        //showHide();
+        globTime = parseFloat(new Date().getTime() / 1000);
+
+
+      }
+    }
+
+    function ballSize(content) {
+      var out;
+      if (content == 0) {
+        out = 75;
+      } else if (content == 1) {
+        out = 100;
+      } else if (content == 2) {
+        out = 175;
+      }
+      obj.style.height = out + "px";
+      obj.style.width = out + "px";
+    }
+
+    function buttonAction(content) {
+      obj.style.backgroundColor = content;
+    }
+
+    function buttonBakground(content) {
+      body.style.backgroundColor = content;
+    }
+
+    function runner() {
+      var inptTime = parseInt(timeSetObj.innerText);
+      var settime = inptTime + globTime;
+      if (ss == true && settime >= parseFloat(new Date().getTime() / 1000)) {
+        change = Number(changeValObj.innerText);
+        if (dirSet == 0) {
+          if (i >= windowWidth - r) {
+            opp = false;
+          } else if (i <= r) {
+            opp = true;
+            j++;
+            if (j >= Number(changeSetObj.innerText)) {
+              ss = false;
+              //showHide();
+              j = 0;
+            }
+
+          }
+          obj.style.removeProperty('right');
+          obj.style.removeProperty('left');
+          obj.style.removeProperty('top');
+          obj.style.right = i + "px";
+          t = windowHeight / 2;
+          obj.style.top = t + "px";
+
+
+
+        } else if (dirSet == 1) {
+          size = obj.offsetWidth * 2.2;
+          if (i >= diagLen - size) {
+            opp = false;
+          } else if (i <= 50) {
+            opp = true;
+            j++;
+            if (j >= Number(changeSetObj.innerText)) {
+              ss = false;
+              //showHide();
+
+              j = 0;
+
+            }
+          }
+          obj.style.removeProperty('right');
+          obj.style.removeProperty('left');
+          obj.style.removeProperty('top');
+
+          sined = Math.sin(diagAngle) * i;
+          cosed = Math.cos(diagAngle) * i;
+          obj.style.left = cosed + "px";
+          obj.style.top = sined + "px";
+
+
+
+        } else if (dirSet == 2) {
+
+          size = obj.offsetWidth * 2.2;
+          if (i >= diagLen - size) {
+            opp = false;
+          } else if (i <= 50) {
+            opp = true;
+            j++;
+            if (j >= Number(changeSetObj.innerText)) {
+              ss = false;
+              //showHide();
+
+              j = 0;
+
+            }
+          }
+          obj.style.removeProperty('right');
+          obj.style.removeProperty('left');
+          obj.style.removeProperty('top');
+
+          sined = Math.sin(diagAngle) * i;
+          cosed = Math.cos(diagAngle) * i;
+          obj.style.right = cosed + "px";
+          obj.style.top = sined + "px";
+
+
+        }
+
+        else if (dirSet == 3) {
+
+          size = obj.offsetWidth * 2.2;
+          if (i >= diagLen - size) {
+            opp = false;
+          } else if (i <= 50) {
+            opp = true;
+            j++;
+            if (j >= Number(changeSetObj.innerText)) {
+              ss = false;
+              //showHide();
+
+              j = 0;
+
+            }
+          }
+          obj.style.removeProperty('right');
+          obj.style.removeProperty('left');
+          obj.style.removeProperty('top');
+          obj.style.removeProperty('bottom');
+
+          sined = Math.asin(diagAngle) * i;
+          cosed = Math.acos(diagAngle) * i;
+
+          obj.style.right = sined + "px";
+          obj.style.left = cosed + "px";
+          obj.style.right = cosed + "px";
+          obj.style.left = sined + "px";
+
+
+        }
+
+
+
+
+
+        if (opp == true) {
+          i = i + change;
+          u = u + change;
+        } else if (opp == false) {
+          u = u - change;
+          i = i - change;
+        }
+      }
+
+    }
+
+    function main() {
+      setInterval(function() {
+        runner();
+      }, change);
+    }
+    main();
+  </script>
+  <style>
+    .inpItem {
+
+      color: white;
+      margin-top: 0.3%;
+      margin-bottom: 0.3%;
+    }
+    #settings{
+      background-color: transparent;
+
+    }
+
+    .set-wraper {
+      float: left;
+      background-color: lightgray;
+      color: black;
+      flex: 0.4;
+      margin-left: 0.3%;
+    }
+    #code
+            {
+                font-family:Arial;
+                font-style:italic;
+                font-weight:bold;
+                border:0;
+                letter-spacing:2px;
+                color:blue;
+            }
+
+    .grey {
+      background-color:  white;
+      padding: 20px;
+      border-radius: 2.50rem;
+    }
+
+    .inp {
+      background-color:  lightgray;
+      color: white;
+      z-index: 2;
+      margin-top: 10px;
+      display: flex;
+
+    }
+
+    .movingDiv {
+      position: absolute;
+      border: none;
+      text-align: center;
+      background-color: white;
+      font-weight: bold;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      z-index: 1;
+
+    }
+
+    button {
+      border: none;
+      padding: 0.3%;
+      margin-top: 0.3%;
+      z-index: 3;
+    }
+
+    body {
+
+      overflow: hidden;
+
+    }
+  </style>
+  <script src="/js/jquery-3.3.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/mixitup.min.js"></script>
+  <script src="/js/masonry.pkgd.min.js"></script>
+  <script src="/js/jquery.slicknav.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/main.js"></script>
+
+</body>
+
+</html>
